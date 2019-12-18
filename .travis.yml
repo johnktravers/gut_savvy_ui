@@ -1,8 +1,8 @@
 language: ruby
 rvm:
- - 2.4.1
-
+- 2.4.1
 deploy:
   provider: heroku
-  api_key: <%= ENV['HEROKU_UI_API_KEY'] %>
   app: gut-savvy-ui
+  api_key:
+    secure: FOlOo86YOydk10uXHXsstJq87d+4RTnT6wrXA92TIyvUtQu/Py7KcEFPrLSk0pJc9D5jPrE4VXLjNkzTaAVDX4i6kA6/ySjaWjnP8DgOx2Y+m6DcTm+qNeesMgIycRBp8qi5iouAl2g5DGDVEetrYH+ZBkGGzYjzd9ty+zuECNH3HwNUmXAHq/TJUWTV3bgpXJitHR5jSbXLAEzvumSqkBSjqM2Wz57O8aplbuzrAo1LQN4PMHpzB56G1YEhfYC1ErmfU6iB0+pn1iBh2yTlVpbTYs7LCrVBdbyB66/2lXsVtBXu5DrIbyZ4pNwkbJurXP4Bfsk6ee715aRllR2NOXnwLzgaEptyMdQET47I5wdXfkyiYOo6Rv3cbAjZSWRjDEVStYrYMECEf8Puf5xCEkHKtZ2Jh5h3AkLCjRVDss9Jx7MH5uUhiqfso4jday1O0K6+Wx1XgnT/tq1P+SwRLUeP7mMMeYW8DpDT/rBeyBO99PQwbZGNORN5wF26PR6LMzkK1NfodhERha3TgYy1c4p3jMfvQ8SeB8qgTXWGGgY8AoT11lt59daD70vZzSa3ifSeMiJ0XIMGtH5rc5v4SCN7XGrcqxE3a9AfLv1cX6uDCLCUchAXp4jEu7A4Kr9ve3NHPHypL35qQffSi7uM5sdaM20ym5mNyxEbOvd6dV8=

@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+ - 2.4.1
+
+deploy:
+  provider: heroku
+  api_key: <%= ENV['HEROKU_UI_API_KEY'] %>
+  app: gut-savvy-ui

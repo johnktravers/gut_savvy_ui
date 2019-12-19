@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates_presence_of :name, :email, :token
+  validates_presence_of :name, :email, :token, :uid
   validates_format_of :email, with: URI::MailTo::EMAIL_REGEXP
 
   has_many :meals

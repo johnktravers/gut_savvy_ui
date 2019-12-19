@@ -16,6 +16,13 @@
       <%= link_to 'Register', '/register'%>
       <%= link_to 'Login', '/login'%>
     </nav>
+
+    <section class="flash-message">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+      <% end %>
+    </section>
+
     <%= yield %>
   </body>
 </html>

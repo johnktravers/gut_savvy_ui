@@ -11,8 +11,7 @@ describe 'As a visitor or user' do
       within 'nav' do
         expect(page).to have_link('Home')
         expect(page).to have_link('Help')
-        expect(page).to have_link('Register')
-        expect(page).to have_link('Login')
+        expect(page).to have_link('Sign In')
       end
     end
   end

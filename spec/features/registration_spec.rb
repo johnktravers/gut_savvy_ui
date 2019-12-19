@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'As a visitor' do
   describe 'When I visit the registration page' do
-    it 'I can connect to my Google account and register for the application' do
+    xit 'I can connect to my Google account and register for the application' do
       visit register_path
 
       click_link 'Create an Account using Google'

@@ -1,5 +1,5 @@
 class Food < ApplicationRecord
-  validates_presence_of :name
+  validates_presence_of :name, :brand
   validates :upc,
             presence: true,
             uniqueness: true,

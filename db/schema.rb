@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_12_19_020545) do
 
   create_table "foods", force: :cascade do |t|
     t.string "name"
+    t.string "brand"
     t.string "upc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

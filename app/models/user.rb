@@ -5,7 +5,7 @@ class User < ApplicationRecord
             uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP }
 
-  has_many :meals
+  has_many :meals, dependent: :destroy
 
   has_many :meal_dishes, through: :meals
   has_many :dishes, through: :meal_dishes

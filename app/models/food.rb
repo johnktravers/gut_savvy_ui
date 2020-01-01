@@ -6,9 +6,9 @@ class Food < ApplicationRecord
             numericality: true,
             length: { is: 12 }
 
-  has_many :dish_foods
+  has_many :dish_foods, dependent: :destroy
   has_many :dishes, through: :dish_foods
 
-  has_many :food_ingredients
+  has_many :food_ingredients, dependent: :destroy
   has_many :ingredients, through: :food_ingredients
 end

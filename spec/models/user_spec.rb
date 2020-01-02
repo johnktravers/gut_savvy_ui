@@ -11,7 +11,7 @@ RSpec.describe User, type: :model do
     it { should_not allow_value('user.example.com').for(:email) }
 
     it { should validate_uniqueness_of :email }
-    it { should validate_uniqueness_of :uid }
+    it { should validate_uniqueness_of(:uid).case_insensitive }
   end
 
   describe 'relationships' do

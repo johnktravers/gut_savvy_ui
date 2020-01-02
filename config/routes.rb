@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   delete '/logout',                   to: 'sessions#destroy'
 
-  resources :meals, only: [:new]
+  resources :meals,  only: [:new, :create]
+  resources :dishes, only: [:new, :create, :destroy]
+  resources :foods,  only: [:new, :create, :destroy]
 end

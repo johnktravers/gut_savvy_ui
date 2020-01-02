@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates_presence_of :name, :email, :token, :uid
-  validates_uniqueness_of :uid
+  validates_uniqueness_of :uid, case_sensitive: false
   validates :email,
             uniqueness: true,
             format: { with: URI::MailTo::EMAIL_REGEXP }

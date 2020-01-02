@@ -2,7 +2,7 @@ class Food < ApplicationRecord
   validates_presence_of :name, :brand
   validates :upc,
             presence: true,
-            uniqueness: true,
+            uniqueness: { case_sensitive: false },
             numericality: true,
             length: { is: 12 }
 

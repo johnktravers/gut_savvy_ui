@@ -1,0 +1,11 @@
+<h1 class='m-4 text-center'>Add a New Food</h1>
+
+<section class="container text-center">
+  <h3>UPC Code</h3>
+
+  <%= form_for Food.new do |f| %>
+    <%= text_field_tag :upc %>
+
+    <%= submit_tag 'Add Food', class: 'btn btn-sm btn-info' %>
+  <% end %>
+</section>

@@ -1,1 +1,37 @@
-<h1 class='m-4 text-center'>Log your meal</h1>
+<h1 class='m-4 text-center'>Log a meal</h1>
+
+<section class="container text-center">
+  <h3 class='mb-3'>Dishes</h3>
+
+  <% if @dishes.any? %>
+    <table class="table table-striped table-bordered cart-table">
+      <thead>
+        <tr>
+          <th scope="col">Dish Name</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dishes.each do |dish| %>
+          <tr id= "dish-<%= dish.id %>">
+            <td><%= dish.name %></td>
+            <td>Edit</td>
+            <td><%= button_to 'Delete', dish_path(dish), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <%= link_to 'Add a New Dish', new_dish_path, class: 'btn btn-info mt-2' %>
+
+  <h4 class='mt-5 mb-4'>Finished adding dishes?</h4>
+
+  <h5>Meal Title</h5>
+  <%= form_for Meal.new do |f| %>
+    <%= text_field_tag :meal_title, nil, placeholder: 'Breakfast, Lunch, etc.' %>
+
+    <%= submit_tag 'Create Meal', class: 'btn btn-sm btn-success' %>
+  <% end %>
+</section>

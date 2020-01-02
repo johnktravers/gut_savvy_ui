@@ -4,3 +4,36 @@
   <%= link_to "Log a Meal", new_meal_path, class: 'btn btn-info' %>
   <%= link_to "See My Results", results_path, class: 'btn btn-success' %>
 </p>
+
+<% if @meals.any? %>
+  <section class="container text-center">
+    <h3 class='mb-4 mt-5'>Previously Logged Meals</h3>
+
+    <table class="table table-striped table-bordered cart-table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Meal</th>
+          <th scope="col">Dishes</th>
+          <th scope="col">Gut Feeling</th>
+          <th scope="col">Update Gut Feeling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @meals.each do |meal| %>
+          <tr id= "meal-<%= meal.id %>">
+            <td><%= meal.created_at.to_date %></td>
+            <td><%= meal.title %></td>
+            <td>
+              <% meal.dishes.each do |dish| %>
+                <%= dish.name %>
+              <% end %>
+            </td>
+            <td><%= meal.gut_feeling %></td>
+            <td>Update</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+<% end %>

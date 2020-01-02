@@ -15,7 +15,7 @@ Food.destroy_all
 FoodIngredient.destroy_all
 Ingredient.destroy_all
 
-user = User.create(
+user = User.create!(
   uid: '117045648135848876970',
   name: 'John Travers',
   email: 'john@example.com',

@@ -19,7 +19,7 @@ user = User.create!(
   uid: '117045648135848876970',
   name: 'John Travers',
   email: 'john@example.com',
-  token: ENV['GOOGLE_TOKEN']
+  token: ENV['FDC_API_KEY']
 )
 
 meal_hash = {

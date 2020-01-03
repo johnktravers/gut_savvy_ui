@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get '/gut_feelings',                to: 'meals#index', as: 'gut_feelings'
 
+  namespace :sessions do
+    patch '/dishes/:food_id',         to: 'dishes#update'
+  end
+
   resources :meals,                 only: [:new, :create]
   resources :dishes,                only: [:new, :create, :edit, :destroy]
   resources :foods,                 only: [:new, :create, :destroy]

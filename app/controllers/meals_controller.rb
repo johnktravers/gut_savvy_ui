@@ -32,6 +32,15 @@ class MealsController < ApplicationController
     end
   end
 
+  def destroy
+    meal = Meal.find(params[:id])
+    meal_title = meal.title
+    if meal.destroy
+      flash[:success] = "You have successfully deleted #{meal_title}"
+    end
+    redirect_to dashboard_path
+  end
+
   private
 
   def meal_params
@@ -53,6 +62,6 @@ class MealsController < ApplicationController
     meal.create_meal_ingredients
     session.delete(:dishes)
     flash[:success] = "#{meal.title} has been added to your meals!"
-    redirect_to gut_feelings_path
+    redirect_to dashboard_path
   end
 end

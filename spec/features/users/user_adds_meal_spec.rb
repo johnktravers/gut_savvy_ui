@@ -67,7 +67,7 @@ RSpec.describe 'As a registered user' do
     end
 
     it "I can add a food that is already in the database" do
-      Food.create(name: "Food Name", upc: "041129077122", brand: "Brand Name")
+      Food.create(name: "CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL", upc: "041129077122", brand: "New World Pasta Company")
 
       visit new_meal_path
       click_link "Add a New Dish"
@@ -77,8 +77,8 @@ RSpec.describe 'As a registered user' do
 
       expect(current_path).to eq(new_dish_path)
       within "#food-#{Food.find_by(upc: "041129077122").id}" do
-        expect(page).to have_content("Food Name")
-        expect(page).to have_content("Brand Name")
+        expect(page).to have_content("CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL")
+        expect(page).to have_content("New World Pasta Company")
       end
     end
 

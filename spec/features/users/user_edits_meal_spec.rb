@@ -24,7 +24,7 @@ RSpec.describe 'As a user' do
       expect(page).to have_content("You have successfully recorded your gut feeling for #{unrated_meal.title}")
 
       within "#meal-#{unrated_meal.id}" do
-        expect(page).to have_content(-3)
+        expect(page).to have_content('-3')
       end
     end
 
@@ -46,7 +46,7 @@ RSpec.describe 'As a user' do
       expect(page).to have_content("You have successfully recorded your gut feeling for #{rated_meal.title}")
 
       within "#meal-#{rated_meal.id}" do
-        expect(page).to have_content(-3)
+        expect(page).to have_content('-3')
       end
     end
 

@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <% @dishes.each do |dish| %>
-        <tr id= "dish-<%= dish.id %>">
+        <tr id="dish-<%= dish.id %>">
           <td><%= dish.name %></td>
           <td><%= link_to 'Edit', edit_dish_path(dish), class: 'btn btn-sm btn-warning' %></td>
           <td><%= button_to 'Delete', dish_path(dish), method: :delete, class: 'btn btn-sm btn-danger' %></td>

@@ -7,7 +7,7 @@ class FoodsController < ApplicationController
     unless food = Food.find_by(upc: params[:food][:upc])
       service = FDCService.new
       food_info = service.food_info(params[:food][:upc])
-      if food_info
+      if food_info && params[:food][:upc] != ''
         food_success(food_info)
       else
         food_error

@@ -45,11 +45,21 @@
         </ul>
       </div>
     </nav>
-    <section class="flash-message">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
+
+    <section class="container flash-messages">
+      <% flash.each do |type, message| %>
+        <% if type == 'error' %>
+          <article class="alert alert-danger mt-3 pb-1">
+            <h6><%= message %></h6>
+          </article>
+        <% else %>
+          <article class="alert alert-success mt-3 pb-1">
+            <h6><%= message %></h6>
+          </article>
+        <% end %>
       <% end %>
     </section>
+
     <%= yield %>
   </body>
 </html>

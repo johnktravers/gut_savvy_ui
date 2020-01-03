@@ -18,6 +18,11 @@ class FoodsController < ApplicationController
     end
   end
 
+  def destroy
+    session[:foods].delete(params[:id].to_i)
+    redirect_to new_dish_path
+  end
+
   private
 
   def require_food_session

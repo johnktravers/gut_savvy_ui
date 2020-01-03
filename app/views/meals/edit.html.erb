@@ -1,0 +1,8 @@
+<h1>Update your gut feeling for <%= @meal.title %></h1>
+
+<%= form_for @meal do |f| %>
+  <%= f.label :gut_feeling %>
+  <%= f.number_field :gut_feeling, :value => @meal.gut_feeling %>
+
+  <%= f.submit "Update" %>
+<% end %>

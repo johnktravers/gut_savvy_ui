@@ -23,7 +23,6 @@ RSpec.describe Meal, type: :model do
       rated_meal = create(:meal)
       unrated_meal = create(:unrated_meal)
 
-      binding.pry
       expect(rated_meal.has_gut_feeling?).to eq(true)
       expect(unrated_meal.has_gut_feeling?).to eq(false)
     end

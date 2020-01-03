@@ -7,4 +7,10 @@ class Dish < ApplicationRecord
 
   has_many :dish_foods, dependent: :destroy
   has_many :foods, through: :dish_foods
+
+  def create_dish_foods(food_ids)
+    food_ids.each do |food_id|
+      DishFood.create(dish_id: id, food_id: food_id)
+    end
+  end
 end

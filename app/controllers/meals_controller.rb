@@ -17,7 +17,26 @@ class MealsController < ApplicationController
     end
   end
 
+  def edit
+    @meal = Meal.find(params[:id])
+  end
+
+  def update
+    @meal = Meal.find(params[:id])
+    if @meal.update(meal_params)
+      flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
+      redirect_to dashboard_path
+    else
+      flash.now[:error] = @meal.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
   private
+
+  def meal_params
+    params.require(:meal).permit(:gut_feeling)
+  end
 
   def dishes?
     session[:dishes].any?

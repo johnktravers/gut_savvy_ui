@@ -9,6 +9,9 @@ class User < ApplicationRecord
 
   has_many :meal_dishes, through: :meals
   has_many :dishes, through: :meal_dishes
+  
+  has_many :dish_foods, through: :dishes
+  has_many :foods, through: :dish_foods
 
   has_many :meal_ingredients, through: :meals
   has_many :ingredients, through: :meal_ingredients

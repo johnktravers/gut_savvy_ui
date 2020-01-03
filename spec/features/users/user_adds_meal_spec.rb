@@ -31,7 +31,7 @@ RSpec.describe 'As a registered user' do
       click_button "Add Food"
 
       expect(current_path).to eq(new_dish_path)
-      within "#food-#{Food.last.id}" do
+      within "#food-#{Food.find_by(upc: "041129077122").id}" do
         expect(page).to have_content("CLASSICO, TOMATO & BASIL PASTA SAUCE")
         expect(page).to have_content("New World Pasta Company")
       end
@@ -40,7 +40,7 @@ RSpec.describe 'As a registered user' do
       fill_in 'food[upc]', with: "078742058238"
       click_button "Add Food"
 
-      within "#food-#{Food.last.id}" do
+      within "#food-#{Food.find_by(upc: "078742058238").id}" do
         expect(page).to have_content("ITALIAN EXTRA VIRGIN OLIVE OIL")
         expect(page).to have_content("MEMBER'S MARK")
       end
@@ -49,9 +49,9 @@ RSpec.describe 'As a registered user' do
       click_button 'Create Dish'
 
       expect(current_path).to eq(new_meal_path)
-      expect(page).to have_content("#{Dish.last.name} has been added to your meal!")
+      expect(page).to have_content("Oily Sauce has been added to your meal!")
 
-      within "#dish-#{Dish.last.id}" do
+      within "#dish-#{Dish.find_by(name: "Oily Sauce").id}" do
         expect(page).to have_content("Oily Sauce")
       end
 
@@ -76,7 +76,7 @@ RSpec.describe 'As a registered user' do
       click_button 'Add Food'
 
       expect(current_path).to eq(new_dish_path)
-      within "#food-#{Food.last.id}" do
+      within "#food-#{Food.find_by(upc: "041129077122").id}" do
         expect(page).to have_content("Food Name")
         expect(page).to have_content("Brand Name")
       end

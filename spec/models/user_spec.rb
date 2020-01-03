@@ -22,5 +22,8 @@ RSpec.describe User, type: :model do
 
     it { should have_many(:meal_ingredients).through(:meals) }
     it { should have_many(:ingredients).through(:meal_ingredients) }
+
+    it { should have_many(:dish_foods).through(:dishes)}
+    it { should have_many(:foods).through(:dish_foods)}
   end
 end

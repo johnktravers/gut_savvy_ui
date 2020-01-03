@@ -1,0 +1,34 @@
+<h1 class='m-4 text-center'>Create a Dish</h1>
+<h3 class='m-4 text-center'>Foods in this Dish</h3>
+<% if @foods.any? %>
+  <table class="table table-striped table-bordered cart-table">
+    <thead>
+      <tr>
+        <th scope="col">Food Name</th>
+        <th scope="col">Brand</th>
+        <th scope="col">UPC Code</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr id= "food-<%= food.id %>">
+          <td><%= food.name %></td>
+          <td><%= food.brand %></td>
+          <td><%= food.upc %></td>
+          <td><%= button_to 'Delete', food_path(food), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There are currently no foods in this dish</p>
+<% end %>
+<br>
+<%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info' %>
+<%= form_for Dish.new do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit "Create Dish" %>
+<% end %>

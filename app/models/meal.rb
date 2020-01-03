@@ -7,7 +7,7 @@ class Meal < ApplicationRecord
   has_many :meal_ingredients, dependent: :destroy
   has_many :ingredients, through: :meal_ingredients
 
-  validates_presence_of :title
+  validates_presence_of     :title
   validates_numericality_of :gut_feeling,
                             only_integer: true,
                             greater_than_or_equal_to: -5,

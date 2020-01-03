@@ -72,20 +72,43 @@ RSpec.describe 'As a user' do
                             )
 
       within "#meal-#{day_old_meal.id}" do
-        expect(page).to_not have_link('Update Gut Feeling')
+        expect(page).to_not have_link('Update')
       end
 
       within "#meal-#{@unrated_meal.id}" do
-        expect(page).to_not have_link('Update Gut Feeling')
+        expect(page).to_not have_link('Update')
       end
 
       within "#meal-#{rated_meal.id}" do
-        expect(page).to have_link('Update Gut Feeling')
-        click_link 'Update Gut Feeling'
+        expect(page).to have_link('Update')
+        click_link 'Update'
       end
 
       expect(current_path).to eq(edit_meal_path(rated_meal))
     end
+  end
+
+  it 'I can delete meals' do
+    rated_meal = create(:meal, user: @user)
+
+    within "#meal-#{@unrated_meal.id}" do
+      click_button 'Delete'
+    end
+
+    expect(current_path).to eq(dashboard_path)
+    @unrated_meal.reload
+    expect(Meal.find(@unrated_meal.id)).to eq(nil)
+
+    within "#meal-#{rated_meal.id}" do
+      click_button 'Delete'
+    end
+
+    expect(current_path).to eq(dashboard_path)
+    rated_meal.reload
+    expect(Meal.find(rated_meal.id)).to eq(nil)
+
+    expect(page).to_not have_content('Meal Title')
+    expect(page).to have_content('There are currently no Meals')
   end
 end
 

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/gut_feelings',                to: 'meals#index', as: 'gut_feelings'
 
-  resources :meals,                 only: [:new, :create]
+  resources :meals,                 only: [:new, :create, :edit, :update]
   resources :dishes,                only: [:new, :create, :edit, :destroy]
   resources :foods,                 only: [:new, :create, :destroy]
 end

@@ -8,13 +8,13 @@
 <h3 class='m-4 text-center'>Your Meals</h3>
 <section class="meals px-5">
   <% if @meals.any? %>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered" id="user-meals">
       <thead>
         <tr>
           <th scope="col">Meal Title</th>
           <th scope="col">Date</th>
           <th scope="col" class='text-center'>Gut Feeling</th>
-          <th scope="col" class='text-center'>Update Gut Feeling</th>
+
           <th scope="col" class='text-center'>Delete</th>
         </tr>
       </thead>
@@ -24,11 +24,12 @@
             <td><%= meal.title %></td>
             <td><%= meal.created_at.localtime.to_s %></td>
             <% if meal.gut_feeling && !one_day_old?(meal)%>
-              <td class='text-center'><%= meal.gut_feeling %></td>
-              <td class='text-center'><%= link_to 'Update', edit_meal_path(meal), class: 'btn btn-sm btn-warning' %></td>
+              <td class='text-center'><strong><%= meal.gut_feeling %></strong><br>
+                <%= link_to 'Update', edit_meal_path(meal), class: 'btn btn-sm btn-warning' %></td>
             <% elsif !meal.gut_feeling && !three_days_old?(meal) %>
               <td class='text-center'><%= link_to 'Add Gut Feeling', edit_meal_path(meal), class: 'btn btn-sm btn-info' %></td>
-              <td></td>
+            <% else %>
+              <td class='text-center'><strong><%= meal.gut_feeling %></strong></td>
             <% end %>
             <td class='text-center'><%= button_to 'Delete', meal_path(meal), method: :delete, class: 'btn btn-sm btn-danger' %></td>
           </tr>
@@ -39,3 +40,9 @@
     <p>There are currently no Meals</p>
   <% end %>
 </section>
+
+<script>
+  $(document).ready(function () {
+    $('#user-meals').DataTable();
+  });
+</script>

@@ -23,10 +23,10 @@
           <tr id="meal-<%= meal.id %>">
             <td><%= meal.title %></td>
             <td><%= meal.created_at.localtime.to_s %></td>
-            <% if meal.gut_feeling %>
+            <% if meal.gut_feeling && !one_day_old?(meal)%>
               <td class='text-center'><%= meal.gut_feeling %></td>
               <td class='text-center'><%= link_to 'Update', edit_meal_path(meal), class: 'btn btn-sm btn-warning' %></td>
-            <% else %>
+            <% elsif !meal.gut_feeling && !three_days_old?(meal) %>
               <td class='text-center'><%= link_to 'Add Gut Feeling', edit_meal_path(meal), class: 'btn btn-sm btn-info' %></td>
               <td></td>
             <% end %>

@@ -89,6 +89,11 @@ RSpec.describe 'As a registered user' do
       click_link "Add a New Dish"
       click_link "Add a New Food"
 
+      fill_in 'food[upc]', with: ""
+      click_button 'Add Food'
+
+      expect(page).to have_content("Please enter a valid 12-digit UPC.")
+
       fill_in 'food[upc]', with: "123123"
       click_button 'Add Food'
 

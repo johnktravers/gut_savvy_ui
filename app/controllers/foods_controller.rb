@@ -7,7 +7,7 @@ class FoodsController < ApplicationController
     unless food = Food.find_by(upc: params[:food][:upc])
       service = FDCService.new
       food_info = service.food_info(params[:food][:upc])
-      if food_info
+      if food_info && params[:food][:upc] != ''
         food_success(food_info)
       else
         food_error
@@ -16,6 +16,11 @@ class FoodsController < ApplicationController
       session[:foods] << food.id
       redirect_to new_dish_path
     end
+  end
+
+  def destroy
+    session[:foods].delete(params[:id].to_i)
+    redirect_to new_dish_path
   end
 
   private

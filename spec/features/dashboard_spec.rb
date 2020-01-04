@@ -42,7 +42,7 @@ RSpec.describe 'As a user' do
       within "#meal-#{rated_meal.id}" do
         expect(page).to have_content(rated_meal.title)
         expect(page).to have_content(rated_meal.gut_feeling)
-        expect(page).to have_content(rated_meal.created_at.localtime.to_s)
+        expect(page).to have_content(rated_meal.created_at.localtime.to_datetime.strftime("%a, %b %d at %l:%M%P"))
         expect(page).to_not have_link('Add Gut Feeling')
       end
 
@@ -52,7 +52,7 @@ RSpec.describe 'As a user' do
 
       within "#meal-#{@unrated_meal.id}" do
         expect(page).to have_content(@unrated_meal.title)
-        expect(page).to have_content(@unrated_meal.created_at.localtime.to_s)
+        expect(page).to have_content(@unrated_meal.created_at.localtime.to_datetime.strftime("%a, %b %d at %l:%M%P"))
         expect(page).to have_link('Add Gut Feeling')
       end
 

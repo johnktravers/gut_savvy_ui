@@ -3,10 +3,15 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user,
                 :one_day_old?,
-                :three_days_old?
+                :three_days_old?,
+                :localtime
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def localtime(meal)
+    meal.created_at.localtime.to_datetime.strftime("%a, %b %d at %l:%M%P")
   end
 
   def one_day_old?(meal)

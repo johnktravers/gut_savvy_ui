@@ -1,5 +1,8 @@
 <h1 class='m-4 text-center'>Add a New Food</h1>
-<%= form_for Food.new do |f| %>
+
+<div id='barcode-scanner'></div>
+
+<%= form_for @food do |f| %>
   <%= f.label :upc %>
   <%= f.text_field :upc %>
 

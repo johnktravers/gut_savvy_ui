@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
+gem 'turbolinks'
 
 gem 'factory_bot_rails'
 gem 'faker'

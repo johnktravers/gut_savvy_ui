@@ -1,7 +1,10 @@
 class FoodsController < ApplicationController
   before_action :require_food_session, :require_login
 
-  def new; end
+  def new
+    @food = Food.new
+    @food.upc = params[:upc]
+  end
 
   def create
     unless food = Food.find_by(upc: params[:food][:upc])
@@ -16,6 +19,10 @@ class FoodsController < ApplicationController
       session[:foods] << food.id
       redirect_to new_dish_path
     end
+  end
+
+  def barcode
+    binding.pry
   end
 
   private

@@ -12,7 +12,7 @@
       <thead>
         <tr>
           <th scope="col">Meal Title</th>
-          <th scope="col">Date</th>
+          <th scope="col">Date Eaten</th>
           <th scope="col" class='text-center'>Gut Feeling</th>
 
           <th scope="col" class='text-center'>Delete</th>
@@ -22,7 +22,7 @@
         <% @meals.each do |meal| %>
           <tr id="meal-<%= meal.id %>">
             <td><%= meal.title %></td>
-            <td><%= meal.created_at.localtime.to_s %></td>
+            <td><%= localtime(meal) %></td>
             <% if meal.gut_feeling && !one_day_old?(meal)%>
               <td class='text-center'><strong><%= meal.gut_feeling %></strong><br>
                 <%= link_to 'Update', edit_meal_path(meal), class: 'btn btn-sm btn-warning' %></td>

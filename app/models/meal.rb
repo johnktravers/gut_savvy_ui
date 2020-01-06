@@ -18,6 +18,18 @@ class Meal < ApplicationRecord
     gut_feeling ? true : false # ternary operator
   end
 
+  def localtime
+    created_at.localtime.to_datetime.strftime("%a, %b %d at %l:%M%P")
+  end
+
+  def one_day_old?
+    (updated_at.to_i - DateTime.now.to_i).abs >= 86400
+  end
+
+  def three_days_old?
+    (created_at.to_i - DateTime.now.to_i).abs >= 259200
+  end
+
   def create_meal_dishes(dish_ids)
     dish_ids.each do |dish_id|
       MealDish.create(meal_id: id, dish_id: dish_id)

@@ -44,6 +44,8 @@
 <script>
   $(document).ready(function () {
     $.fn.dataTable.moment( 'ddd, MMM DD, Y [at] hh:mma' );
-    $('#user-meals').DataTable();
+    $('#user-meals').DataTable( {
+      "order": [[ 1, "desc" ]]
+    } );
   });
 </script>

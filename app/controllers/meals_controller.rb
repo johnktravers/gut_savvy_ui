@@ -23,10 +23,9 @@ class MealsController < ApplicationController
 
   def update
     @meal = Meal.find(params[:id])
-    if @meal.update(meal_params)
-      flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
-      redirect_to dashboard_path
-    end
+    @meal.update(meal_params)
+    flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
+    redirect_to dashboard_path
   end
 
   def destroy

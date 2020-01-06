@@ -22,11 +22,11 @@
         <% @meals.each do |meal| %>
           <tr id="meal-<%= meal.id %>">
             <td><%= meal.title %></td>
-            <td><%= localtime(meal) %></td>
-            <% if meal.gut_feeling && !one_day_old?(meal)%>
+            <td><%= meal.localtime %></td>
+            <% if meal.gut_feeling && !meal.one_day_old? %>
               <td class='text-center'><strong><%= meal.gut_feeling %></strong><br>
                 <%= link_to 'Update', edit_meal_path(meal), class: 'btn btn-sm btn-warning' %></td>
-            <% elsif !meal.gut_feeling && !three_days_old?(meal) %>
+            <% elsif !meal.gut_feeling && !meal.three_days_old? %>
               <td class='text-center'><%= link_to 'Add Gut Feeling', edit_meal_path(meal), class: 'btn btn-sm btn-info' %></td>
             <% else %>
               <td class='text-center'><strong><%= meal.gut_feeling %></strong></td>

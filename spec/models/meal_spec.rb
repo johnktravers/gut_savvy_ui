@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Meal, type: :model do
   describe 'validations' do
     it { should validate_presence_of :title }
+    it { should validate_numericality_of(:gut_feeling).only_integer }
+    it { should validate_numericality_of(:gut_feeling).is_greater_than_or_equal_to(-5) }
+    it { should validate_numericality_of(:gut_feeling).is_less_than_or_equal_to(5) }
   end
 
   describe 'relationships' do
@@ -16,6 +19,14 @@ RSpec.describe Meal, type: :model do
   end
 
   describe 'instance methods' do
+    it "can verify gut_feeling presence" do
+      rated_meal = create(:meal)
+      unrated_meal = create(:unrated_meal)
+
+      expect(rated_meal.has_gut_feeling?).to eq(true)
+      expect(unrated_meal.has_gut_feeling?).to eq(false)
+    end
+
     it "can create meal dishes" do
       meal = create(:meal)
       dish_1 = create(:dish)

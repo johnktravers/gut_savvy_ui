@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     patch '/dishes/:food_id',         to: 'dishes#update'
   end
 
-  resources :meals,                 only: [:new, :create]
+  resources :meals,                 only: [:new, :create, :edit, :update, :destroy]
   resources :dishes,                only: [:new, :create, :edit, :destroy]
   resources :foods,                 only: [:new, :create, :destroy]
 end

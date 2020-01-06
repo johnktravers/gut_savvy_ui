@@ -64,6 +64,8 @@ RSpec.describe 'As a registered user' do
 
       fill_in 'meal[title]', with: "Tomato Sauce Pasta"
       click_button 'Create Meal'
+
+      expect(current_path).to eq(dashboard_path)
     end
 
     it "I can add a food that is already in the database" do

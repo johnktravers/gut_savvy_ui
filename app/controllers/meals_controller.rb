@@ -17,7 +17,35 @@ class MealsController < ApplicationController
     end
   end
 
+  def edit
+    @meal = Meal.find(params[:id])
+  end
+
+  def update
+    @meal = Meal.find(params[:id])
+    if @meal.update(meal_params)
+      flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
+      redirect_to dashboard_path
+    else
+      flash.now[:error] = @meal.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
+  def destroy
+    meal = Meal.find(params[:id])
+    meal_title = meal.title
+    if meal.destroy
+      flash[:success] = "You have successfully deleted #{meal_title}"
+    end
+    redirect_to dashboard_path
+  end
+
   private
+
+  def meal_params
+    params.require(:meal).permit(:gut_feeling)
+  end
 
   def dishes?
     session[:dishes].any?
@@ -34,6 +62,6 @@ class MealsController < ApplicationController
     meal.create_meal_ingredients
     session.delete(:dishes)
     flash[:success] = "#{meal.title} has been added to your meals!"
-    redirect_to gut_feelings_path
+    redirect_to dashboard_path
   end
 end

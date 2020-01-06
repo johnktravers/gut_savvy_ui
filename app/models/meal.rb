@@ -19,7 +19,7 @@ class Meal < ApplicationRecord
   end
 
   def localtime
-    created_at.localtime.to_datetime.strftime("%a, %b %d at %I:%M%P")
+    created_at.localtime.to_datetime.strftime("%a, %b %d, %Y at %I:%M%P")
   end
 
   def one_day_old?

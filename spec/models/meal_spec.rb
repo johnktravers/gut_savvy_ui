@@ -27,6 +27,11 @@ RSpec.describe Meal, type: :model do
       expect(unrated_meal.has_gut_feeling?).to eq(false)
     end
 
+    it "can format date using localtime" do
+      meal = create(:meal, created_at: "2019-05-13T12:30:00")
+      expect(meal.localtime).to eq("Mon, May 13 at  6:30am")
+    end
+
     it "can verify updated_at age is less than 1 day" do
       meal     = create(:meal)
       old_meal = create(:meal, updated_at: DateTime.now.prev_day)

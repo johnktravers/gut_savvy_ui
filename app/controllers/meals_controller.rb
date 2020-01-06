@@ -23,13 +23,9 @@ class MealsController < ApplicationController
 
   def update
     @meal = Meal.find(params[:id])
-    if @meal.update(meal_params)
-      flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
-      redirect_to dashboard_path
-    else
-      flash.now[:error] = @meal.errors.full_messages.to_sentence
-      render :edit
-    end
+    @meal.update(meal_params)
+    flash[:success] = "You have successfully recorded your gut feeling for #{@meal.title}"
+    redirect_to dashboard_path
   end
 
   def destroy
@@ -53,7 +49,7 @@ class MealsController < ApplicationController
 
   def meal_error(meal)
     flash[:error] = meal.errors.full_messages.to_sentence if dishes?
-    flash[:error] = "Meals cannot be created without any dishes." if !dishes?
+    flash[:error] = 'Meals cannot be created without any dishes.' unless dishes?
     redirect_to new_meal_path
   end
 

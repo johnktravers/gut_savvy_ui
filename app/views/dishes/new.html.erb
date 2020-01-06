@@ -57,7 +57,7 @@
       </tr>
     </thead>
     <tbody>
-      <% current_user.foods.each do |food| %>
+      <% current_user.foods.uniq.each do |food| %>
         <tr id="food-<%= food.id %>">
           <td><%= food.name %></td>
           <td><%= food.brand %></td>

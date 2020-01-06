@@ -30,7 +30,7 @@ RSpec.describe Meal, type: :model do
     it "can format date using localtime" do
       meal = create(:meal, created_at: "2019-05-13T12:30:00")
 
-      expect(meal.localtime).to eq("Mon, May 13 at 06:30am").or("Mon, May 13 at 12:30pm")
+      expect(meal.localtime).to eq("Mon, May 13 at 06:30am").or eq("Mon, May 13 at 12:30pm")
     end
 
     it "can verify updated_at age is less than 1 day" do

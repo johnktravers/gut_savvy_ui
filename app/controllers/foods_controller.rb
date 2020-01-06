@@ -35,7 +35,7 @@ class FoodsController < ApplicationController
   def food_success(food_info)
     food = create_food(food_info)
     food.create_ingredients(food_info)
-    session[:foods] << food.id
+    session[:foods] << food.id.to_s
     redirect_to new_dish_path
   end
 

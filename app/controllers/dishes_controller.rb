@@ -9,7 +9,7 @@ class DishesController < ApplicationController
   def edit
     dish = Dish.find(params[:id])
     session[:foods] = dish.foods.pluck(:id)
-    session[:dishes].delete(params[:id].to_i)
+    session[:dishes].delete(params[:id])
     dish.destroy if dish.meal_dishes.empty?
     redirect_to new_dish_path
   end
@@ -42,7 +42,7 @@ class DishesController < ApplicationController
   def dish_success(dish)
     dish.create_dish_foods(session[:foods])
     session.delete(:foods)
-    session[:dishes] << dish.id
+    session[:dishes] << dish.id.to_s
     flash[:success] = "#{dish.name} has been added to your meal!"
     redirect_to new_meal_path
   end

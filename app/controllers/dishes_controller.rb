@@ -6,6 +6,14 @@ class DishesController < ApplicationController
     @foods = Food.find(session[:foods])
   end
 
+  def edit
+    dish = Dish.find(params[:id])
+    session[:foods] = dish.foods.pluck(:id)
+    session[:dishes].delete(params[:id].to_i)
+    dish.destroy if dish.meal_dishes.empty?
+    redirect_to new_dish_path
+  end
+
   def create
     dish = Dish.new(name: params[:dish][:name])
     if foods? && dish.save

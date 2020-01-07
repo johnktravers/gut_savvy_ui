@@ -1,1 +1,10 @@
 <h1 class='m-4 text-center'>Your Results</h1>
+
+<section class='text-center'>
+  <% if current_user.ratings_needed > 0 %>
+    <p>You must add a Gut Feeling to 12 meals before the results page will show your results</p>
+    <p>You need to log <%= current_user.ratings_needed %> more meals with Gut Feelings </p>
+  <% else %>
+    Charts
+  <% end %>
+</section>

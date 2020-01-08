@@ -19,4 +19,23 @@ class User < ApplicationRecord
   def ratings_needed
     12 - meals.where.not(gut_feeling: nil).count
   end
+
+  def worst_ingredients_data
+    ingredients.uniq.map do |ingredient|
+      {
+        name: ingredient.name,
+        avg_gut_feeling: ingredient.average_gut_feeling(self)
+      }
+    end.sort_by { |ingredient_hash| ingredient_hash[:avg_gut_feeling]}[0..24]
+  end
+
+  def best_ingredients_data
+    ingredients.uniq.map do |ingredient|
+      {
+        name: ingredient.name,
+        avg_gut_feeling: ingredient.average_gut_feeling(self)
+      }
+    end.sort_by { |ingredient_hash| -ingredient_hash[:avg_gut_feeling]}[0..24]
+  end
+
 end

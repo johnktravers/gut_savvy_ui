@@ -9,6 +9,8 @@ script:
   - bundle exec rspec
 services:
   postgresql
+addons:
+  chrome: stable
 deploy:
   provider: heroku
   app: gut-savvy-ui

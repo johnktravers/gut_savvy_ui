@@ -1,12 +1,40 @@
+language: node_js
+
+matrix:
+  include:
+    - os: linux
+      node_js: '12'
+      sudo: required
+      env: DISPLAY=':99.0'
+      dist: trusty
+      addons:
+        apt:
+          update: true
+          sources:
+            - google-chrome
+          packages:
+            - dpkg
+            - google-chrome-stable
+    - os: osx
+      node_js: '12'
+      sudo: required
+      env: HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
+  - |
+  if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    sh -e /etc/init.d/xvfb start
+  fi
 language: ruby
 rvm:
 - 2.4.1
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec
+  - npm test
 services:
   postgresql
 dist: trusty
@@ -15,7 +43,11 @@ addons:
 before_install:
   - # start your web application and listen on `localhost`
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  ⋮
+    - |
+    if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+      brew update > /dev/null
+      brew cask install google-chrome
+    fi
 deploy:
   provider: heroku
   app: gut-savvy-ui
@@ -25,3 +57,5 @@ env:
   global:
   - secure: jPBPl5AW7Kug19dsQNR2XLHgtmiILLxHaPcUVb5q8l/VcCAg4pP3gX3KZxpm17z/icI7je8o6y319PGz1MCjL8wcoLAGXNJzMsfY94S9UFdYtrcsb8OqEZNJIydw3woyXKQAh7fu+Tuy50DBykRxNqx/xID+5LpGmG/AZf647pjMCFpz2e4+ZuZCNzzt1HFsjyEL9ExF0VFnetTIUbUbxqhi7S/wBG/jxBt7sZ6nh1e5IT+CPKK+ADQjwKv7d9gow1NdRGridPGo1eproWV5xzO/HVEFAYHrukKo9/E+eBE7QD0IsEiM2DIcT6HS5NOJQ3AI6OErMSw0YPuPnpnr/lHWw4cHqanmn9rhN7Clb5vRckoznB7Stx5kVYbtqQThTVVQkQtf0YYoZAe6wCjCfr+ToA4FveRon3bBzGoLgAIDf0HOgAy7cDilYsyU0Fq8pqg8QRX5QppW7CE5+GBcrHPQxw/BK5L2bAevVk1yCB9SmvX9ECzoN7l1X/xqzg9x6yEpSLcsen13Ax5E4keb3NHs0/kYqWo6Xpr4z70LCTlOYT51ng/ZATuX6vp1Is0ROuuP5IRG3Rz5AddxFbuLNZ5/WP5FE4CcAF3mgvfIyAMF5En3EfQmkTvO2nv0/qetEKsKHn93ewG0kv/wKgq5xTRzYAOaShlEk0Q0yiPXidE=
   - secure: FNjs/kIPsHIG8hmQ+uIPTt8c03pbxWqT4CvqRpJoC82n01Fe4jo0Qn/w/VqJbIyFTG9nIk18PR6iWDSTguZ11g8MhEHk6mvry9iTQTSdAFRh/uOe7Zm57nhj61rI7zkPF+BjtaYJdxS18XgZ8CdgB22MpIpOmw67Cj8SXZj0W7AaodgcMSx19qjgF8b6QobLOyrZmPY+rDolP0m62tH9vDdz8+I/jfXWRjwebcK5VouXotyrhLBaZleMkfIQG5PS3cgc21tTrjhlBzWX/ccUKmeUtm0s310hSjQrFHMQLYz96loICuoh9SJxiZp3dMymeUZKplgS8BRnUEctL7aY4r3Su5kRvKuAzVC48rvz3Umvmg3Oj3mMWFLMMbUJRv+y71jMbHGWScUxJBuUeVbVzODQncGAHw1qPD8yXcdzadyPGI0VxggWT6nP6weGGeDkSaRg1/iK6Z/eD8RcrRXBA/UpHC1YZcoHzL+Wtu4gDGwpxJG3eRXALIGwrRFc3EqIHiz7R/uscWBZZhSt7mmcEb3BhxAff4eXIO9C/qUXSSXXVgcZ7IABaoJ/itR28DzUw79uNOyc3Hf4VhtL5PmX5erSikGJaj7jhKu7ujxtL0wPqNlWPRZyZZYdt003zLwK0W33HxWf1jwzJq2C0cuWv7MzUxiF0IRrLnHM/o1rS4s=
+install:
+  - npm install

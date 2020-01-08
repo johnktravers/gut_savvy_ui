@@ -23,7 +23,23 @@ RSpec.describe User, type: :model do
     it { should have_many(:meal_ingredients).through(:meals) }
     it { should have_many(:ingredients).through(:meal_ingredients) }
 
-    it { should have_many(:dish_foods).through(:dishes)}
-    it { should have_many(:foods).through(:dish_foods)}
+    it { should have_many(:dish_foods).through(:dishes) }
+    it { should have_many(:foods).through(:dish_foods) }
+  end
+
+  describe 'instance_methods' do
+    it 'ratings_needed' do
+      user = create(:user)
+      expect(user.ratings_needed).to eq(12)
+
+      create_list(:unrated_meal, 5, user: user)
+      expect(user.ratings_needed).to eq(12)
+
+      create_list(:meal, 5, user: user)
+      expect(user.ratings_needed).to eq(7)
+
+      create_list(:meal, 8, user: user)
+      expect(user.ratings_needed).to eq(-1)
+    end
   end
 end

@@ -8,4 +8,13 @@ class Ingredient < ApplicationRecord
 
   has_many :meal_ingredients, dependent: :destroy
   has_many :meals, through: :meal_ingredients
+
+  def times_eaten
+  end
+
+  def avg_gut_feeling
+  end
+
+  def all_foods
+  end
 end

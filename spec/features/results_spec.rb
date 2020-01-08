@@ -25,8 +25,10 @@ RSpec.describe 'As a user' do
     it 'I can see my consumed ingredients, their associated food, avg gut feeling and # of times eaten' do
       Faker::UniqueGenerator.clear # Clears used values for all generators
       Ingredient.destroy_all
+
       meal_1       = create(:meal, user: @user, gut_feeling: 3)
       meal_2       = create(:meal, user: @user, gut_feeling: -5)
+      create_list(:meal, 10, user: @user) # to satisfy 12 meal minimum conditional
 
       dish_1       = create(:dish) # eaten once
       dish_2       = create(:dish) # eaten once
@@ -113,6 +115,22 @@ RSpec.describe 'As a user' do
           expect(page).to have_content(food_4.name)
         end
       end
+    end
+
+    it 'I see a notice of required Gut Feelings before my results are rendered' do
+      create_list(:meal, 3, user: @user)
+
+      visit results_path
+
+      expect(page).to have_content('You must add a Gut Feeling to 12 meals before the results page will show your results')
+      expect(page).to have_content('You need to log 9 more meals with Gut Feelings')
+
+      create_list(:meal, 9, user: @user)
+
+      visit results_path
+
+      expect(page).to_not have_content('You must add a Gut Feeling to 12 meals before the results page will show your results')
+      expect(page).to_not have_content('You need to log 9 more meals with Gut Feelings')
     end
   end
 end

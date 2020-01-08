@@ -88,15 +88,10 @@ RSpec.describe Ingredient, type: :model do
     end
 
     it 'can return all foods consumed by user which contain ingredient' do
-      expected_1 = [@food_1]
-      expected_2 = [@food_2, @food_3]
-      expected_3 = [@food_2, @food_3, @food_4]
-      expected_4 = [@food_1, @food_2, @food_3, @food_4]
-
-      expect(@ingredient_1.all_foods(@user)).to eq(expected_1)
-      expect(@ingredient_2.all_foods(@user)).to eq(expected_2)
-      expect(@ingredient_3.all_foods(@user)).to eq(expected_3)
-      expect(@ingredient_4.all_foods(@user)).to eq(expected_4)
+      expect(@ingredient_1.all_foods(@user)).to include(@food_1)
+      expect(@ingredient_2.all_foods(@user)).to include(@food_2, @food_3)
+      expect(@ingredient_3.all_foods(@user)).to include(@food_2, @food_3, @food_4)
+      expect(@ingredient_4.all_foods(@user)).to include(@food_1, @food_2, @food_3, @food_4)
     end
   end
 end

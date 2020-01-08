@@ -64,14 +64,17 @@
     id: 'gut-feeling-timeline',
     class: 'm-auto',
     data: {gut_feelings: current_user.gut_feelings_over_time} %>
+  <% end %>
 
 <script>
-
   $(document).ready(function () {
     $('#ingredient-history').DataTable( {
       "order": [[ 3, "asc" ]]
     } );
   });
+</script>
+
+<script>
 
   const colorArrayBad = ['#FF0000', '#FF4D00', '#FF7400', '#FF9A00', '#FFC100'];
 

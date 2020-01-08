@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+#worst-ingredients-graph {
+  height:350px;
+  padding-bottom:25px;
+}
+
+#best-ingredients-graph {
+  height:350px;
+  padding-bottom:25px;
+}
+
+svg {
+  height:500px;
+}

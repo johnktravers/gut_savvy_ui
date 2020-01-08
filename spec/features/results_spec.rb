@@ -69,26 +69,17 @@ RSpec.describe 'As a user' do
 
 
       create(:meal_ingredient, meal: meal_1, ingredient: ingredient_1)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_2)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_2)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_3)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_3)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_4)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_4)
-      create(:meal_ingredient, meal: meal_1, ingredient: ingredient_4)
+      create_list(:meal_ingredient, 2, meal: meal_1, ingredient: ingredient_2)
+      create_list(:meal_ingredient, 2, meal: meal_1, ingredient: ingredient_3)
+      create_list(:meal_ingredient, 3, meal: meal_1, ingredient: ingredient_4)
 
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_2)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_2)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_3)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_3)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_3)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_4)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_4)
-      create(:meal_ingredient, meal: meal_2, ingredient: ingredient_4)
+      create_list(:meal_ingredient, 2, meal: meal_2, ingredient: ingredient_2)
+      create_list(:meal_ingredient, 3, meal: meal_2, ingredient: ingredient_3)
+      create_list(:meal_ingredient, 3, meal: meal_2, ingredient: ingredient_4)
 
       visit results_path
 
-      within ".ingredient-history" do
+      within "#ingredient-history" do
         within "#ingredient-#{ingredient_1.id}" do
           expect(page).to have_content(ingredient_1.name)
           expect(page).to have_content('3.0')

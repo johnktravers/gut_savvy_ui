@@ -26,10 +26,25 @@ RSpec.describe Ingredient, type: :model do
       @ingredient_3 = create(:ingredient) # found thrice (foods 2, 3, 4), eaten 5 times, ratings (3, 3, -5, -5, -5), avg -1.8 #
       @ingredient_4 = create(:ingredient) # found 4 times (foods 1, 2, 3, 4), eaten 6 times, ratings (3, 3, 3, -5, -5, -5), avg -1 #
 
+      @dish_1       = create(:dish) # eaten once
+      @dish_2       = create(:dish) # eaten once
+
       @food_1       = create(:food) # eaten once (dish_1)
       @food_2       = create(:food) # eaten twice (dishes 1, 2)
       @food_3       = create(:food) # eaten twice (dishes 1, 2)
       @food_4       = create(:food) # eaten once (dish_2)
+
+      create(:meal_dish, meal: @meal_1, dish: @dish_1)
+      create(:meal_dish, meal: @meal_2, dish: @dish_2)
+
+
+      create(:dish_food, dish: @dish_1, food: @food_1)
+      create(:dish_food, dish: @dish_1, food: @food_2)
+      create(:dish_food, dish: @dish_1, food: @food_3)
+
+      create(:dish_food, dish: @dish_2, food: @food_2)
+      create(:dish_food, dish: @dish_2, food: @food_3)
+      create(:dish_food, dish: @dish_2, food: @food_4)
 
       create(:food_ingredient, food: @food_1, ingredient: @ingredient_1)
       create(:food_ingredient, food: @food_1, ingredient: @ingredient_4)

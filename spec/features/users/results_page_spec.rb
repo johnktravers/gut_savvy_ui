@@ -21,7 +21,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to_not have_content('You need to log 9 more meals with Gut Feelings')
     end
 
-    it "I see bar graphs for my best and worst ingredients based on gut feeling", js: true do
+    it 'I see bar graphs for my best and worst ingredients based on gut feeling', js: true do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
@@ -60,11 +60,10 @@ RSpec.describe 'As a registered user' do
       within '#best-ingredients-graph' do
         expect(page).to have_css('svg')
       end
-
     end
   end
 
-  it "I see a line graph of my gut feelings over time" do
+  it 'I see a line graph of my gut feelings over time', js: true do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

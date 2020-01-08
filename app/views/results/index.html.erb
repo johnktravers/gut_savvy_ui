@@ -17,7 +17,7 @@
           <tr id="ingredient-<%= ingredient.id %>">
             <td><%= ingredient.name %></td>
             <td>
-              <% ingredient.foods.each do |food| %>
+              <% ingredient.all_foods(current_user).each do |food| %>
                 <%= food.name %><br>
               <% end %>
             </td>

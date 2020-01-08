@@ -53,4 +53,15 @@ class User < ApplicationRecord
     .having('avg(meals.gut_feeling) > 0')
     .order('avg_gut_feeling DESC')
   end
+
+  def gut_feelings_over_time
+    feeling_hash = meals.where.not(gut_feeling: nil).group('meals.created_at::date').average(:gut_feeling)
+
+    feeling_hash.map do |date, gut_feeling|
+      {
+        date: date,
+        avg_gut_feeling: gut_feeling
+      }
+    end
+  end
 end

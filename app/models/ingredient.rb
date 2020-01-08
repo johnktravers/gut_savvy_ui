@@ -8,4 +8,8 @@ class Ingredient < ApplicationRecord
 
   has_many :meal_ingredients, dependent: :destroy
   has_many :meals, through: :meal_ingredients
+
+  def average_gut_feeling(user)
+    meals.where(user_id: user.id).average(:gut_feeling)
+  end
 end

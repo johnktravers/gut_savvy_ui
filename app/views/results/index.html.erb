@@ -8,7 +8,7 @@
         <tr>
           <th scope="col">Ingredient</th>
           <th scope="col">Foods with this Ingredient</th>
-          <th scope="col" class='text-center'># of times eaten</th>
+          <th scope="col" class='text-center'>Number of Times Eaten</th>
           <th scope="col" class='text-center'>Average Gut Feeling</th>
         </tr>
       </thead>
@@ -16,12 +16,16 @@
         <% @ingredients.each do |ingredient| %>
           <tr id="ingredient-<%= ingredient.id %>">
             <td><%= ingredient.name %></td>
-            <td><%= ingredient.all_foods %></td>
-            <td class='text-center'>
-              <strong><%= ingredient.times_eaten %></strong>
+            <td>
+              <% ingredient.foods.each do |food| %>
+                <%= food.name %><br>
+              <% end %>
             </td>
             <td class='text-center'>
-              <strong><%= ingredient.avg_gut_feeling %></strong>
+              <strong><%= ingredient.times_eaten(current_user) %></strong>
+            </td>
+            <td class='text-center'>
+              <strong><%= ingredient.average_gut_feeling(current_user) %></strong>
             </td>
           </tr>
         <% end %>

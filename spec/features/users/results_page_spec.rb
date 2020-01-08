@@ -60,8 +60,6 @@ RSpec.describe 'As a registered user' do
       within '#best-ingredients-graph' do
         expect(page).to have_css('svg')
       end
-
-      save_and_open_page
     end
   end
 end

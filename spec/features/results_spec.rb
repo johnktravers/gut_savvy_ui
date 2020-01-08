@@ -116,5 +116,21 @@ RSpec.describe 'As a user' do
         end
       end
     end
+
+    it 'I see a notice of required Gut Feelings before my results are rendered' do
+      create_list(:meal, 3, user: @user)
+
+      visit results_path
+
+      expect(page).to have_content('You must add a Gut Feeling to 12 meals before the results page will show your results')
+      expect(page).to have_content('You need to log 9 more meals with Gut Feelings')
+
+      create_list(:meal, 9, user: @user)
+
+      visit results_path
+
+      expect(page).to_not have_content('You must add a Gut Feeling to 12 meals before the results page will show your results')
+      expect(page).to_not have_content('You need to log 9 more meals with Gut Feelings')
+    end
   end
 end

@@ -9,7 +9,24 @@ class Ingredient < ApplicationRecord
   has_many :meal_ingredients, dependent: :destroy
   has_many :meals, through: :meal_ingredients
 
+  def all_foods(user)
+    user
+    .foods
+    .joins(:food_ingredients)
+    .where(food_ingredients: { ingredient_id: id })
+    .distinct
+  end
+
+  def times_eaten(user)
+    meal_ingredients
+    .joins(:meal)
+    .where(meals: {user_id: user.id})
+    .count
+  end
+
   def average_gut_feeling(user)
-    meals.where(user_id: user.id).average(:gut_feeling)
+    meals
+    .where(user_id: user.id)
+    .average(:gut_feeling)
   end
 end

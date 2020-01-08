@@ -60,6 +60,9 @@ RSpec.describe Meal, type: :model do
     end
 
     it "can create meal ingredients" do
+      Faker::UniqueGenerator.clear # Clears used values for all generators
+      Ingredient.destroy_all
+
       fi_1 = create(:food_ingredient)
       fi_2 = create(:food_ingredient)
       fi_3 = create(:food_ingredient)

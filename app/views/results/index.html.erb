@@ -15,7 +15,7 @@
       <tbody>
         <% @ingredients.each do |ingredient| %>
           <tr id="ingredient-<%= ingredient.id %>">
-            <td><%= ingredient.title %></td>
+            <td><%= ingredient.name %></td>
             <td><%= ingredient.all_foods %></td>
             <td class='text-center'>
               <strong><%= ingredient.times_eaten %></strong>

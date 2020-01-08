@@ -1,1 +1,41 @@
 <h1 class='m-4 text-center'>Your Results</h1>
+
+<h3 class='m-4 text-center'>Your Eating History</h3>
+<section class="food-history px-5">
+  <% if @ingredients.any? %>
+    <table class="table table-striped table-bordered" id="ingredient-history">
+      <thead>
+        <tr>
+          <th scope="col">Ingredient</th>
+          <th scope="col">Foods with this Ingredient</th>
+          <th scope="col" class='text-center'># of times eaten</th>
+          <th scope="col" class='text-center'>Average Gut Feeling</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @ingredients.each do |ingredient| %>
+          <tr id="ingredient-<%= ingredient.id %>">
+            <td><%= ingredient.title %></td>
+            <td><%= ingredient.all_foods %></td>
+            <td class='text-center'>
+              <strong><%= ingredient.times_eaten %></strong>
+            </td>
+            <td class='text-center'>
+              <strong><%= ingredient.avg_gut_feeling %></strong>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>You haven't logged any meals</p>
+  <% end %>
+</section>
+
+<script>
+  $(document).ready(function () {
+    $('#ingredient-history').DataTable( {
+      "order": [[ 3, "asc" ]]
+    } );
+  });
+</script>

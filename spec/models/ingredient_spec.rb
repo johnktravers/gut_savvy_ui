@@ -16,6 +16,8 @@ RSpec.describe Ingredient, type: :model do
 
   describe 'instance methods' do
     before(:all) do
+      Faker::UniqueGenerator.clear # Clears used values for all generators
+      Ingredient.destroy_all
       @user         = create(:user)
 
       @meal_1       = create(:meal, user: @user, gut_feeling: 3)
@@ -59,6 +61,7 @@ RSpec.describe Ingredient, type: :model do
 
       create(:food_ingredient, food: @food_4, ingredient: @ingredient_3)
       create(:food_ingredient, food: @food_4, ingredient: @ingredient_4)
+
 
       create(:meal_ingredient, meal: @meal_1, ingredient: @ingredient_1)
       create_list(:meal_ingredient, 2, meal: @meal_1, ingredient: @ingredient_2)

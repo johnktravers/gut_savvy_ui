@@ -8,6 +8,9 @@ RSpec.describe 'As a registered user' do
       click_link 'Sign in with Google'
       @user = User.last
 
+      Faker::UniqueGenerator.clear # Clears used values for all generators
+      Ingredient.destroy_all
+      
       fi_1 = create(:food_ingredient)
       fi_2 = create(:food_ingredient)
       fi_3 = create(:food_ingredient)

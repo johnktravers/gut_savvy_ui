@@ -23,6 +23,8 @@ RSpec.describe 'As a user' do
     end
 
     it 'I can see my consumed ingredients, their associated food, avg gut feeling and # of times eaten' do
+      Faker::UniqueGenerator.clear # Clears used values for all generators
+      Ingredient.destroy_all
       meal_1       = create(:meal, user: @user, gut_feeling: 3)
       meal_2       = create(:meal, user: @user, gut_feeling: -5)
 

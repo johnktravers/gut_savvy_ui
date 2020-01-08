@@ -22,20 +22,24 @@ class User < ApplicationRecord
 
   def worst_ingredients_data
     ingredients.uniq.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.average_gut_feeling(self)
-      }
-    end.sort_by { |ingredient_hash| ingredient_hash[:avg_gut_feeling]}[0..24]
+      if ingredient.average_gut_feeling(self) < 0
+        {
+          name: ingredient.name,
+          avg_gut_feeling: ingredient.average_gut_feeling(self)
+        }
+      end
+    end.compact.sort_by { |ingredient| ingredient[:avg_gut_feeling]}[0..24]
   end
 
   def best_ingredients_data
     ingredients.uniq.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.average_gut_feeling(self)
-      }
-    end.sort_by { |ingredient_hash| -ingredient_hash[:avg_gut_feeling]}[0..24]
+      if ingredient.average_gut_feeling(self) > 0
+        {
+          name: ingredient.name,
+          avg_gut_feeling: ingredient.average_gut_feeling(self)
+        }
+      end
+    end.compact.sort_by { |ingredient| -ingredient[:avg_gut_feeling]}[0..24]
   end
 
 end

@@ -21,25 +21,36 @@ class User < ApplicationRecord
   end
 
   def worst_ingredients_data
-    ingredients.uniq.map do |ingredient|
-      if ingredient.average_gut_feeling(self) < 0
-        {
-          name: ingredient.name,
-          avg_gut_feeling: ingredient.average_gut_feeling(self)
-        }
-      end
-    end.compact.sort_by { |ingredient| ingredient[:avg_gut_feeling]}[0..24]
+    worst_ingredients.map do |ingredient|
+      {
+        name: ingredient.name,
+        avg_gut_feeling: ingredient.avg_gut_feeling
+      }
+    end[0..24]
+  end
+
+  def worst_ingredients
+    ingredients.joins(:meals)
+    .select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling')
+    .group('ingredients.id')
+    .having('avg(meals.gut_feeling) < 0')
+    .order('avg_gut_feeling')
   end
 
   def best_ingredients_data
-    ingredients.uniq.map do |ingredient|
-      if ingredient.average_gut_feeling(self) > 0
-        {
-          name: ingredient.name,
-          avg_gut_feeling: ingredient.average_gut_feeling(self)
-        }
-      end
-    end.compact.sort_by { |ingredient| -ingredient[:avg_gut_feeling]}[0..24]
+    best_ingredients.map do |ingredient|
+      {
+        name: ingredient.name,
+        avg_gut_feeling: ingredient.avg_gut_feeling
+      }
+    end[0..24]
   end
 
+  def best_ingredients
+    ingredients.joins(:meals)
+    .select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling')
+    .group('ingredients.id')
+    .having('avg(meals.gut_feeling) > 0')
+    .order('avg_gut_feeling DESC')
+  end
 end

@@ -1,5 +1,5 @@
+build: trusty
 before_script:
-  - bundle exec rails runner "Webdrivers::Chromedriver.update"
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 language: ruby
@@ -10,7 +10,6 @@ script:
   - bundle exec rspec
 services:
   postgresql
-dist: trusty
 addons:
   chrome: stable
 before_install:

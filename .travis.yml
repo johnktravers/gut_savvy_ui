@@ -1,5 +1,6 @@
 build: trusty
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 language: ruby
@@ -11,7 +12,9 @@ script:
 services:
   postgresql
 addons:
-  chrome: stable
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
 before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 deploy:

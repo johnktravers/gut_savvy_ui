@@ -106,7 +106,9 @@ RSpec.describe User, type: :model do
       end
 
       it 'gut_feelings_over_time' do
-        result = @user.gut_feelings_over_time
+        result = @user.gut_feelings_over_time.sort_by do |gut_feeling_hash|
+          gut_feeling_hash[:date]
+        end
 
         expect(result.count).to eq(4)
         expect(result[0][:avg_gut_feeling]).to eq(-0.4e1)

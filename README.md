@@ -38,7 +38,7 @@ Our goal is to add an advanced analysis feature for food ingredients that will h
 **Project Status:**
 
 
-This project was created as a school project, but continued support and functionality if planned. Current status is functional but in an early stage of the overall plan for this application. 
+This project was created as a school project, but continued support and functionality is planned. Currently, the program status is functional. Gut Savvy is still in the early stages of the overall plan for this application. 
 
 
 **Authors:**

@@ -19,8 +19,8 @@
 }
 
 #barcode-scanner canvas, #barcode-scanner video {
-  width: 100%;
-  height: auto;
+  width: 400px;
+  height: 250px;
 }
 
 #worst-ingredients-graph {

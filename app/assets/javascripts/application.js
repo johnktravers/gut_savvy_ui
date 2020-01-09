@@ -12,21 +12,25 @@
 //
 //= require rails-ujs
 //= require activestorage
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
 //= require quagga
 //= require_tree .
 
 function order_by_occurrence(arr) {
   var counts = {};
   arr.forEach(function(value){
-      if(!counts[value]) {
-          counts[value] = 0;
-      }
-      counts[value]++;
+    if(!counts[value]) {
+        counts[value] = 0;
+    }
+    counts[value]++;
   });
 
-  return Object.keys(counts).sort(function(curKey,nextKey) {
-      return counts[curKey] < counts[nextKey];
-  });
+  var sortable = [];
+  Object.keys(counts).forEach(upc => sortable.push([upc, counts[upc]]));
+  sortable.sort((a,b) => a[1] < b[1] ? 1 : -1);
+  return sortable[0];
 }
 
 function load_quagga(){
@@ -40,12 +44,12 @@ function load_quagga(){
         if (last_result.length > 20) {
           code = order_by_occurrence(last_result)[0];
           last_result = [];
-          Quagga.stop();
           $.ajax({
             type: "POST",
             url: '/foods',
             data: { upc: code }
           });
+          Quagga.stop();
         }
       });
     }

@@ -18,6 +18,7 @@ gem 'faker'
 gem 'faraday'
 gem 'figaro'
 gem 'omniauth-google-oauth2'
+gem 'skylight'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

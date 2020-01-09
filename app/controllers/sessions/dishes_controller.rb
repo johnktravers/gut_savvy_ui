@@ -4,7 +4,7 @@ class Sessions::DishesController < ApplicationController
   def update
     food_id = params[:food_id].to_i
     session[:foods] << food_id unless session[:foods].include?(food_id)
-    binding.pry
+
     redirect_to new_dish_path
   end
 

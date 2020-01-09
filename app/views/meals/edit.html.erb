@@ -1,0 +1,8 @@
+<h1>Update your gut feeling for <%= @meal.title %></h1>
+
+<%= form_for @meal do |f| %>
+  <%= f.label :gut_feeling %>
+  <%= f.select :gut_feeling, options_for_select((-5..5).to_a.reverse!, @meal.gut_feeling) %>
+
+  <%= f.submit "Update" %>
+<% end %>

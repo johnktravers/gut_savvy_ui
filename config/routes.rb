@@ -12,9 +12,19 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#create'
   delete '/logout',                   to: 'sessions#destroy'
 
+  namespace :sessions do
+    patch '/meals/:dish_id',           to: 'meals#update'
+    delete '/meals/:dish_id',          to: 'dishes#destroy'
+  end
+
   get '/gut_feelings',                to: 'meals#index', as: 'gut_feelings'
 
-  resources :meals,                 only: [:new, :create]
+  namespace :sessions do
+    patch '/dishes/:food_id',         to: 'dishes#update'
+    delete '/dishes/:food_id',         to: 'foods#destroy'
+  end
+
+  resources :meals,                 only: [:new, :create, :edit, :update, :destroy]
   resources :dishes,                only: [:new, :create, :edit, :destroy]
   resources :foods,                 only: [:new, :create, :destroy]
 

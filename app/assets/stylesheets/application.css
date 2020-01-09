@@ -14,11 +14,25 @@
  *= require_self
  */
 
- #barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
-   display: none;
- }
+#barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
+  display: none;
+}
 
- #barcode-scanner canvas, #barcode-scanner video {
-   width: 100%;
-   height: auto;
- }
+#barcode-scanner canvas, #barcode-scanner video {
+  width: 100%;
+  height: auto;
+}
+
+#worst-ingredients-graph {
+  height:350px;
+  padding-bottom:25px;
+}
+
+#best-ingredients-graph {
+  height:350px;
+  padding-bottom:25px;
+}
+
+svg {
+  height:500px;
+}

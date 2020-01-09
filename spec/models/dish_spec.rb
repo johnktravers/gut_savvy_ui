@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Dish, type: :model do
   describe 'validations' do
     it { should validate_presence_of :name }
-    it { should validate_uniqueness_of :name }
   end
 
   describe 'relationships' do
@@ -15,10 +14,10 @@ RSpec.describe Dish, type: :model do
   end
 
   describe 'instance methods' do
-    it "can create dish foods" do
+    it 'can create dish foods' do
       food_1 = create(:food)
       food_2 = create(:food)
-      session = Hash.new
+      session = {}
       session[:foods] = [food_1.id, food_2.id]
       dish = create(:dish)
 

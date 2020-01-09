@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :require_food_session, :require_login
+  skip_before_action :verify_authenticity_token, only: :create
 
   def new
     @food = Food.new
@@ -7,25 +8,30 @@ class FoodsController < ApplicationController
   end
 
   def create
-    unless food = Food.find_by(upc: params[:food][:upc])
-      service = FDCService.new
-      food_info = service.food_info(params[:food][:upc])
-      if food_info && params[:food][:upc] != ''
+    upc = get_upc
+    if food = Food.find_by(upc: upc)
+      session[:foods] << food.id.to_s
+      redirect_to new_dish_path
+    else
+      service = GutSavvyService.new
+      food_info = service.food_info(upc)
+      if food_info && upc.length == 12
         food_success(food_info)
       else
         food_error
       end
-    else
-      session[:foods] << food.id
-      redirect_to new_dish_path
     end
   end
 
-  def barcode
-    binding.pry
-  end
-
   private
+
+  def get_upc
+    if params[:food]
+      params[:food][:upc]
+    else
+      params[:upc][-12..-1]
+    end
+  end
 
   def require_food_session
     render file: "/public/404" if session[:foods].nil?

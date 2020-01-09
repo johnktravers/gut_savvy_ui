@@ -30,11 +30,12 @@ class User < ApplicationRecord
   end
 
   def worst_ingredients
-    ingredients.joins(:meals)
-    .select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling')
-    .group('ingredients.id')
-    .having('avg(meals.gut_feeling) < 0')
-    .order('avg_gut_feeling')
+    ingredients.joins(:meals).
+    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, count(ingredients.id) as frequency').
+    group('ingredients.id').
+    having('avg(meals.gut_feeling) < 0').
+    having('count(ingredients.id) > 2').
+    order('avg_gut_feeling')
   end
 
   def best_ingredients_data
@@ -47,11 +48,12 @@ class User < ApplicationRecord
   end
 
   def best_ingredients
-    ingredients.joins(:meals)
-    .select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling')
-    .group('ingredients.id')
-    .having('avg(meals.gut_feeling) > 0')
-    .order('avg_gut_feeling DESC')
+    ingredients.joins(:meals).
+    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, count(ingredients.id) as frequency').
+    group('ingredients.id').
+    having('avg(meals.gut_feeling) > 0').
+    having('count(ingredients.id) > 2').
+    order('avg_gut_feeling DESC')
   end
 
   def gut_feelings_over_time

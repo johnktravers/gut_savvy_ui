@@ -12,13 +12,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.2.0'
 
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'faraday'
 gem 'figaro'
 gem 'omniauth-google-oauth2'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

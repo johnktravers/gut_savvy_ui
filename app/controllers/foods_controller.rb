@@ -10,11 +10,11 @@ class FoodsController < ApplicationController
   def create
     upc = get_upc
     if food = Food.find_by(upc: upc)
-      session[:foods] << food.id.to_s
+      session[:foods] << food.id
       redirect_to new_dish_path
     else
-      service = GutSavvyService.new
-      food_info = service.food_info(upc)
+      @service ||= GutSavvyService.new
+      food_info = @service.food_info(upc)
       if food_info && upc.length == 12
         food_success(food_info)
       else
@@ -34,26 +34,26 @@ class FoodsController < ApplicationController
   end
 
   def require_food_session
-    render file: "/public/404" if session[:foods].nil?
+    render file: '/public/404' if session[:foods].nil?
   end
 
   def create_food(food_info)
     Food.create(
-      name: food_info[:description],
-      brand: food_info[:brandOwner],
-      upc: food_info[:gtinUpc]
+      name: food_info[:name],
+      brand: food_info[:brand],
+      upc: food_info[:upc]
     )
   end
 
   def food_success(food_info)
     food = create_food(food_info)
-    food.create_ingredients(food_info)
-    session[:foods] << food.id.to_s
+    food.create_ingredients(food_info[:ingredients])
+    session[:foods] << food.id
     redirect_to new_dish_path
   end
 
   def food_error
-    flash[:error] = "Please enter a valid 12-digit UPC."
+    flash[:error] = 'Please enter a valid 12-digit UPC.'
     redirect_to new_food_path
   end
 end

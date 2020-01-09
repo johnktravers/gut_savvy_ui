@@ -10,7 +10,7 @@ class FoodsController < ApplicationController
   def create
     upc = get_upc
     if food = Food.find_by(upc: upc)
-      session[:foods] << food.id
+      session[:foods] << food.id unless session[:foods].includes?[food.id]
       redirect_to new_dish_path
     else
       @service ||= GutSavvyService.new

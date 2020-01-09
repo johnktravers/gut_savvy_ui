@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-
+ 
 #barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
   display: none;
 }

@@ -61,32 +61,45 @@ RSpec.describe User, type: :model do
         @meal_11 = create(:meal, user: @user, gut_feeling: 5, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
         @meal_12 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
 
-        create(:meal_ingredient, meal: @meal_1)
-        create(:meal_ingredient, meal: @meal_2)
-        create(:meal_ingredient, meal: @meal_3)
-        create(:meal_ingredient, meal: @meal_4)
-        create(:meal_ingredient, meal: @meal_5)
-        create(:meal_ingredient, meal: @meal_6)
-        create(:meal_ingredient, meal: @meal_7)
-        create(:meal_ingredient, meal: @meal_8)
-        create(:meal_ingredient, meal: @meal_9)
-        create(:meal_ingredient, meal: @meal_10)
-        create(:meal_ingredient, meal: @meal_11)
-        create(:meal_ingredient, meal: @meal_12)
+        ingredient_1 = create(:ingredient)
+        ingredient_2 = create(:ingredient)
+        ingredient_3 = create(:ingredient)
+        ingredient_4 = create(:ingredient)
+        ingredient_5 = create(:ingredient)
+        ingredient_6 = create(:ingredient)
+        ingredient_7 = create(:ingredient)
+        ingredient_8 = create(:ingredient)
+        ingredient_9 = create(:ingredient)
+        ingredient_10 = create(:ingredient)
+        ingredient_11 = create(:ingredient)
+        ingredient_12 = create(:ingredient)
+
+        @meal_1.ingredients.push(ingredient_1, ingredient_3)
+        @meal_2.ingredients.push(ingredient_1, ingredient_3)
+        @meal_3.ingredients.push(ingredient_1, ingredient_2, ingredient_3)
+        @meal_4.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_5.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_6.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_7.ingredients.push(ingredient_8, ingredient_9)
+        @meal_8.ingredients.push(ingredient_8, ingredient_9)
+        @meal_9.ingredients.push(ingredient_7, ingredient_8, ingredient_9)
+        @meal_10.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
+        @meal_11.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
+        @meal_12.ingredients.push(ingredient_10, ingredient_12)
       end
 
       it 'best_ingredients' do
         result = @user.best_ingredients
 
-        expect(result.length).to eq(6)
-        expect(result.first.avg_gut_feeling).to eq(5)
-        expect(result.last.avg_gut_feeling).to eq(1)
+        expect(result.length).to eq(5)
+        expect(result.first.avg_gut_feeling).to eq(4.5)
+        expect(result.last.avg_gut_feeling).to eq(2)
       end
 
       it 'best_ingredients_data' do
         result = @user.best_ingredients_data
 
-        expect(result.count).to eq(6)
+        expect(result.count).to eq(5)
         expect(result.first.keys).to eq(%i[name avg_gut_feeling])
       end
 
@@ -94,7 +107,7 @@ RSpec.describe User, type: :model do
         result = @user.worst_ingredients
 
         expect(result.length).to eq(5)
-        expect(result.first.avg_gut_feeling).to eq(-5)
+        expect(result.first.avg_gut_feeling).to eq(-4)
         expect(result.last.avg_gut_feeling).to eq(-1)
       end
 

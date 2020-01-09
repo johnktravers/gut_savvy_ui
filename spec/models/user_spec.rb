@@ -46,20 +46,20 @@ RSpec.describe User, type: :model do
       before(:each) do
         Faker::UniqueGenerator.clear # Clears used values for all generators
         Ingredient.destroy_all
-        
+
         @user = create(:user)
-        @meal_1 = create(:meal, user: @user, gut_feeling: -5)
-        @meal_2 = create(:meal, user: @user, gut_feeling: -4)
-        @meal_3 = create(:meal, user: @user, gut_feeling: -3)
-        @meal_4 = create(:meal, user: @user, gut_feeling: -2)
-        @meal_5 = create(:meal, user: @user, gut_feeling: -1)
-        @meal_6 = create(:meal, user: @user, gut_feeling: 0)
-        @meal_7 = create(:meal, user: @user, gut_feeling: 1)
-        @meal_8 = create(:meal, user: @user, gut_feeling: 2)
-        @meal_9 = create(:meal, user: @user, gut_feeling: 3)
-        @meal_10 = create(:meal, user: @user, gut_feeling: 4)
-        @meal_11 = create(:meal, user: @user, gut_feeling: 5)
-        @meal_12 = create(:meal, user: @user, gut_feeling: 2)
+        @meal_1 = create(:meal, user: @user, gut_feeling: -5, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_2 = create(:meal, user: @user, gut_feeling: -4, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_3 = create(:meal, user: @user, gut_feeling: -3, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_4 = create(:meal, user: @user, gut_feeling: -2, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_5 = create(:meal, user: @user, gut_feeling: -1, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_6 = create(:meal, user: @user, gut_feeling: 0, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_7 = create(:meal, user: @user, gut_feeling: 1, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_8 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_9 = create(:meal, user: @user, gut_feeling: 3, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_10 = create(:meal, user: @user, gut_feeling: 4, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
+        @meal_11 = create(:meal, user: @user, gut_feeling: 5, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
+        @meal_12 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
 
         create(:meal_ingredient, meal: @meal_1)
         create(:meal_ingredient, meal: @meal_2)
@@ -87,7 +87,7 @@ RSpec.describe User, type: :model do
         result = @user.best_ingredients_data
 
         expect(result.count).to eq(6)
-        expect(result.first.keys).to eq([:name, :avg_gut_feeling])
+        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
       end
 
       it 'worst_ingredients' do
@@ -102,7 +102,15 @@ RSpec.describe User, type: :model do
         result = @user.worst_ingredients_data
 
         expect(result.count).to eq(5)
-        expect(result.first.keys).to eq([:name, :avg_gut_feeling])
+        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
+      end
+
+      it 'gut_feelings_over_time' do
+        result = @user.gut_feelings_over_time
+
+        expect(result.count).to eq(4)
+        expect(result[0][:avg_gut_feeling]).to eq(-0.4e1)
+        expect(result[0][:date]).to eq(@meal_1.created_at.to_date)
       end
     end
   end

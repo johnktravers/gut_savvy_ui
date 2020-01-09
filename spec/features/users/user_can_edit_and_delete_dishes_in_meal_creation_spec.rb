@@ -9,7 +9,9 @@ RSpec.describe 'As a user' do
       @user = User.last
     end
 
-    it "I can remove a dish from the meal I am building" do
+    it 'I can remove a dish from the meal I am building' do
+      Faker::UniqueGenerator.clear # Clears used values for all generators
+      Ingredient.destroy_all
       fi_1 = create(:food_ingredient)
       fi_2 = create(:food_ingredient)
       dish_1 = create(:dish)
@@ -22,7 +24,7 @@ RSpec.describe 'As a user' do
       click_link 'Log a Meal'
 
       within("#dish-#{dish_1.id}") do
-        click_button "Add"
+        click_button 'Add'
       end
 
       within('.current-dishes') do
@@ -36,7 +38,7 @@ RSpec.describe 'As a user' do
       end
 
       within('.current-dishes') do
-        expect(page).to have_content("There are currently no dishes in this meal")
+        expect(page).to have_content('There are currently no dishes in this meal')
       end
     end
 
@@ -44,37 +46,37 @@ RSpec.describe 'As a user' do
       visit '/dashboard'
       click_link 'Log a Meal'
 
-      click_link "Add a New Dish"
-      click_link "Add a New Food"
-      fill_in 'food[upc]', with: "041129077122"
-      click_button "Add Food"
-      click_link "Add a New Food"
-      fill_in 'food[upc]', with: "078742058238"
-      click_button "Add Food"
+      click_link 'Add a New Dish'
+      click_link 'Add a New Food'
+      fill_in 'food[upc]', with: '041129077122'
+      click_button 'Add Food'
+      click_link 'Add a New Food'
+      fill_in 'food[upc]', with: '078742058238'
+      click_button 'Add Food'
       fill_in 'dish[name]', with: 'Oily Sauce'
       click_button 'Create Dish'
 
       id = Dish.find_by(name: 'Oily Sauce').id
 
-      within ".current-dishes" do
+      within '.current-dishes' do
         within "#dish-#{id}" do
           click_link 'Edit'
         end
       end
 
-      within ".current-foods" do
-        expect(page).to have_content("CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL")
-        expect(page).to have_content("ITALIAN EXTRA VIRGIN OLIVE OIL")
+      within '.current-foods' do
+        expect(page).to have_content('CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL')
+        expect(page).to have_content('ITALIAN EXTRA VIRGIN OLIVE OIL')
       end
 
-      click_link "Add a New Food"
-      fill_in 'food[upc]', with: "640671889988"
-      click_button "Add Food"
+      click_link 'Add a New Food'
+      fill_in 'food[upc]', with: '640671889988'
+      click_button 'Add Food'
       fill_in 'dish[name]', with: 'Raspberry Pasta Sauce'
       click_button 'Create Dish'
 
       within('.current-dishes') do
-        expect(page).to have_content("Raspberry Pasta Sauce")
+        expect(page).to have_content('Raspberry Pasta Sauce')
       end
     end
   end

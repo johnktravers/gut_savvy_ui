@@ -50,6 +50,6 @@ Christopher Kelling, John Travers, Jonathan Patterson, Ryan Hantak
 **Support:**
 
 
-All of the authors of this program have a presence on GitHub. Read out there for help or support for this program.
+Each of the authors of this program have a presence on GitHub. Reach out to them on GitHub for help or support for this program.
 
 

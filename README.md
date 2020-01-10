@@ -1,6 +1,6 @@
 # README
 
-**Description:**
+# Description
 
 
 Gut Savvy is an application for tracking the foods that you eat, giving your meals a rating based on how you feel, and receiving results that will help you determine which foods are good and which foods are bad for your gut health.
@@ -8,7 +8,7 @@ Gut Savvy is an application for tracking the foods that you eat, giving your mea
 Gut Savvy was built using: Ruby version 2.4.1, Rails version 5.2.4, Sinatra, and JavaScript.
 
 
-**Local Setup:**
+# Local Setup
 
 
 Visit https://github.com/johnktravers/gut_savvy_ui and clone down the repo. Once you have cloned Gut Savvy onto your local computer, open a text editor like Atom, and bundle to add the gemfile to your system. This will enable you to work on the user interface side of the application. 
@@ -17,8 +17,9 @@ Visit https://github.com/johnktravers/gut_savvy_ui and clone down the repo. Once
 Gut Savvy also utilized a microservice setup using Sinatra. Visit https://github.com/Jonpatt92/gut_savvy_service to clone down and install the service. This microservice hits the FDC API. This service accepts a 12-digit UPC code and returns information of the related food product. 
 
 
-**How to Use:**
+# How to Use
 
+[First go to the Gut Savvy homepage and register with a google account](http://gut-savvy-ui.herokuapp.com/)
 
 To use this application you must log a meal. In our system a meal can consist of many dishes and a dish can be made up of many foods. To add a meal you must visit your profile dashboard. From this page you should click the 'Log A Meal' button and then you will be taken to the Log a Meal page. From this page, click 'Add a New Dish' and then from the dish page you can add the specific foods you ate in that dish.
 
@@ -29,27 +30,30 @@ After you have created a meal you will need to add your Gut Feeling in order to 
 The purpose of your results page is to help you keep track of what foods and ingredients are making you feel good and also which are making you feel bad. The results page will have several graphs and charts with information based on your Gut Feelings. You will need to add a Gut Feeling to 12 meals before your results page is populated with information.
 
 
-**Roadmap:**
+# Roadmap
 
 
 Our goal is to add an advanced analysis feature for food ingredients that will help better define what foods we recommend the user eat and which we recommend they avoid. Our goal is to be very precise in our food results and recommendations. 
 
 
-**Project Status:**
+# Project Status
 
 
-This project was created as a school project, but continued support and functionality is planned. Currently, the program status is functional. Gut Savvy is still in the early stages of the overall plan for this application. 
+This project was created as a two week school project, but continued support and functionality is planned. Currently, the program status is functional. Gut Savvy is still in the early stages of the overall plan for this application. 
 
 
 **Authors:**
 
 
-Christopher Kelling, John Travers, Jonathan Patterson, Ryan Hantak
+* [Christopher Kelling](https://github.com/cjkelling)
+* [John Travers](https://github.com/johnktravers)
+* [Jonathan Patterson](https://github.com/jonpatt92)
+* [Ryan Hantak](https://github.com/rhantak)
 
 
 **Support:**
 
 
-Each of the authors of this program have a presence on GitHub. Reach out to them on GitHub for help or support for this program.
+Reach out to us on Github for help or support for this program.
 
 

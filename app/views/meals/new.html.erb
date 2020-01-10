@@ -28,7 +28,7 @@
   </p>
 </section>
 <section class='text-center m-4 box rounded p-4'>
-  <h4 class='mb-3'>Done Adding Dishes?</h4>
+  <h3 class='mb-3 box-title'>Done Adding Dishes?</h3>
   <%= form_for Meal.new do |f| %>
     <%= f.text_field :title, placeholder: 'Meal Title' %>
 
@@ -36,7 +36,7 @@
   <% end %>
 </section>
 
-<section class="dish-history px-5">
+<section class="dish-history px-5 mt-5">
   <h3 class='m-4 text-center'>Select From Previous Dishes</h3>
     <table class="table table-striped table-bordered cart-table" id='user-dishes'>
       <thead class='thead-dark'>

@@ -1,6 +1,7 @@
 class Sessions::MealsController < ApplicationController
   def update
-    session[:dishes] << params[:dish_id].to_i
+    dish_id = params[:dish_id].to_i
+    session[:dishes] << dish_id unless session[:dishes].include?(dish_id)
     redirect_to new_meal_path
   end
 end

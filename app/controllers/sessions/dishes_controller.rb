@@ -2,7 +2,9 @@ class Sessions::DishesController < ApplicationController
   before_action :require_login
 
   def update
-    session[:foods] << params[:food_id].to_i
+    food_id = params[:food_id].to_i
+    session[:foods] << food_id unless session[:foods].include?(food_id)
+
     redirect_to new_dish_path
   end
 

@@ -42,7 +42,7 @@ class DishesController < ApplicationController
   def dish_success(dish)
     dish.create_dish_foods(session[:foods])
     session.delete(:foods)
-    session[:dishes] << dish.id
+    session[:dishes] << dish.id unless session[:dishes].include?(dish.id)
     flash[:success] = "#{dish.name} has been added to your meal!"
     redirect_to new_meal_path
   end

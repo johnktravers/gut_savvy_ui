@@ -46,55 +46,68 @@ RSpec.describe User, type: :model do
       before(:each) do
         Faker::UniqueGenerator.clear # Clears used values for all generators
         Ingredient.destroy_all
-        
-        @user = create(:user)
-        @meal_1 = create(:meal, user: @user, gut_feeling: -5)
-        @meal_2 = create(:meal, user: @user, gut_feeling: -4)
-        @meal_3 = create(:meal, user: @user, gut_feeling: -3)
-        @meal_4 = create(:meal, user: @user, gut_feeling: -2)
-        @meal_5 = create(:meal, user: @user, gut_feeling: -1)
-        @meal_6 = create(:meal, user: @user, gut_feeling: 0)
-        @meal_7 = create(:meal, user: @user, gut_feeling: 1)
-        @meal_8 = create(:meal, user: @user, gut_feeling: 2)
-        @meal_9 = create(:meal, user: @user, gut_feeling: 3)
-        @meal_10 = create(:meal, user: @user, gut_feeling: 4)
-        @meal_11 = create(:meal, user: @user, gut_feeling: 5)
-        @meal_12 = create(:meal, user: @user, gut_feeling: 2)
 
-        create(:meal_ingredient, meal: @meal_1)
-        create(:meal_ingredient, meal: @meal_2)
-        create(:meal_ingredient, meal: @meal_3)
-        create(:meal_ingredient, meal: @meal_4)
-        create(:meal_ingredient, meal: @meal_5)
-        create(:meal_ingredient, meal: @meal_6)
-        create(:meal_ingredient, meal: @meal_7)
-        create(:meal_ingredient, meal: @meal_8)
-        create(:meal_ingredient, meal: @meal_9)
-        create(:meal_ingredient, meal: @meal_10)
-        create(:meal_ingredient, meal: @meal_11)
-        create(:meal_ingredient, meal: @meal_12)
+        @user = create(:user)
+        @meal_1 = create(:meal, user: @user, gut_feeling: -5, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_2 = create(:meal, user: @user, gut_feeling: -4, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_3 = create(:meal, user: @user, gut_feeling: -3, created_at: 'Sat, 21 Dec 2019 14:54:09 UTC +00:00')
+        @meal_4 = create(:meal, user: @user, gut_feeling: -2, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_5 = create(:meal, user: @user, gut_feeling: -1, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_6 = create(:meal, user: @user, gut_feeling: 0, created_at: 'Sun, 22 Dec 2019 14:54:09 UTC +00:00')
+        @meal_7 = create(:meal, user: @user, gut_feeling: 1, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_8 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_9 = create(:meal, user: @user, gut_feeling: 3, created_at: 'Mon, 23 Dec 2019 14:54:09 UTC +00:00')
+        @meal_10 = create(:meal, user: @user, gut_feeling: 4, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
+        @meal_11 = create(:meal, user: @user, gut_feeling: 5, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
+        @meal_12 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
+
+        ingredient_1 = create(:ingredient)
+        ingredient_2 = create(:ingredient)
+        ingredient_3 = create(:ingredient)
+        ingredient_4 = create(:ingredient)
+        ingredient_5 = create(:ingredient)
+        ingredient_6 = create(:ingredient)
+        ingredient_7 = create(:ingredient)
+        ingredient_8 = create(:ingredient)
+        ingredient_9 = create(:ingredient)
+        ingredient_10 = create(:ingredient)
+        ingredient_11 = create(:ingredient)
+        ingredient_12 = create(:ingredient)
+
+        @meal_1.ingredients.push(ingredient_1, ingredient_3)
+        @meal_2.ingredients.push(ingredient_1, ingredient_3)
+        @meal_3.ingredients.push(ingredient_1, ingredient_2, ingredient_3)
+        @meal_4.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_5.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_6.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
+        @meal_7.ingredients.push(ingredient_8, ingredient_9)
+        @meal_8.ingredients.push(ingredient_8, ingredient_9)
+        @meal_9.ingredients.push(ingredient_7, ingredient_8, ingredient_9)
+        @meal_10.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
+        @meal_11.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
+        @meal_12.ingredients.push(ingredient_10, ingredient_12)
       end
 
       it 'best_ingredients' do
         result = @user.best_ingredients
 
-        expect(result.length).to eq(6)
-        expect(result.first.avg_gut_feeling).to eq(5)
-        expect(result.last.avg_gut_feeling).to eq(1)
+        expect(result.length).to eq(5)
+        expect(result.first.avg_gut_feeling).to eq(4.5)
+        expect(result.last.avg_gut_feeling).to eq(2)
       end
 
       it 'best_ingredients_data' do
         result = @user.best_ingredients_data
 
-        expect(result.count).to eq(6)
-        expect(result.first.keys).to eq([:name, :avg_gut_feeling])
+        expect(result.count).to eq(5)
+        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
       end
 
       it 'worst_ingredients' do
         result = @user.worst_ingredients
 
         expect(result.length).to eq(5)
-        expect(result.first.avg_gut_feeling).to eq(-5)
+        expect(result.first.avg_gut_feeling).to eq(-4)
         expect(result.last.avg_gut_feeling).to eq(-1)
       end
 
@@ -102,7 +115,17 @@ RSpec.describe User, type: :model do
         result = @user.worst_ingredients_data
 
         expect(result.count).to eq(5)
-        expect(result.first.keys).to eq([:name, :avg_gut_feeling])
+        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
+      end
+
+      it 'gut_feelings_over_time' do
+        result = @user.gut_feelings_over_time.sort_by do |gut_feeling_hash|
+          gut_feeling_hash[:date]
+        end
+
+        expect(result.count).to eq(4)
+        expect(result[0][:avg_gut_feeling]).to eq(-0.4e1)
+        expect(result[0][:date]).to eq(@meal_1.created_at.to_date)
       end
     end
   end

@@ -26,6 +26,7 @@ RSpec.describe 'As a registered user' do
       click_link "Add a New Food"
 
       expect(current_path).to eq(new_food_path)
+      expect(page).to have_css('#barcode-scanner')
 
       fill_in 'food[upc]', with: "041129077122"
       click_button "Add Food"

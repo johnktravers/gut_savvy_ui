@@ -26,5 +26,9 @@ Rails.application.routes.draw do
 
   resources :meals,                 only: [:new, :create, :edit, :update, :destroy]
   resources :dishes,                only: [:new, :create, :edit, :destroy]
-  resources :foods,                 only: [:new, :create]
+  resources :foods,                 only: [:new, :create, :destroy]
+
+  namespace :foods do
+    post :barcode
+  end
 end

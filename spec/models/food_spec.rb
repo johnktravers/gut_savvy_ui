@@ -20,38 +20,14 @@ RSpec.describe Food, type: :model do
   end
 
   describe 'instance methods' do
-    it "can format its ingredients into an array" do
+    it 'can create ingredients' do
       food = create(:food)
-      food_info = {
-            "fdcId": 631954,
-            "description": "CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL",
-            "dataType": "Branded",
-            "gtinUpc": "041129077122",
-            "publishedDate": "2019-12-06",
-            "brandOwner": "New World Pasta Company",
-            "ingredients": "TOMATO PUREE (WATER, TOMATO PASTE), DICED TOMATOES IN JUICE (TOMATOES, TOMATO JUICE, CITRIC ACID, CALCIUM CHLORIDE), CONTAINS 2% OR LESS OF: OLIVE OIL, ONIONS, SALT, BASIL, GARLIC, SPICES, NATURAL FLAVOR.",
-            "allHighlightFields": "<b>GTIN/UPC</b>: <em>041129077122</em>",
-            "score": -747.62915
-        }
-      expect(food.ingredient_list(food_info)).to eq( ["TOMATO PUREE", "DICED TOMATOES IN JUICE"] )
-    end
+      food_info = '{"data":{"name":"CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL","brand":"New World Pasta Company","upc":"041129077122","ingredients":["TOMATO PUREE","DICED TOMATOES IN JUICE"]}}'
 
-    it "can create ingredients" do
-      food = create(:food)
-      food_info = {
-            "fdcId": 631954,
-            "description": "CLASSICO, TOMATO & BASIL PASTA SAUCE, TOMATO & BASIL, TOMATO & BASIL",
-            "dataType": "Branded",
-            "gtinUpc": "041129077122",
-            "publishedDate": "2019-12-06",
-            "brandOwner": "New World Pasta Company",
-            "ingredients": "TOMATO PUREE (WATER, TOMATO PASTE), DICED TOMATOES IN JUICE (TOMATOES, TOMATO JUICE, CITRIC ACID, CALCIUM CHLORIDE), CONTAINS 2% OR LESS OF: OLIVE OIL, ONIONS, SALT, BASIL, GARLIC, SPICES, NATURAL FLAVOR.",
-            "allHighlightFields": "<b>GTIN/UPC</b>: <em>041129077122</em>",
-            "score": -747.62915
-        }
+      ingredient_list = JSON.parse(food_info)['data']['ingredients']
 
-        food.create_ingredients(food_info)
-        expect(food.ingredients.pluck(:name)).to eq( ["TOMATO PUREE", "DICED TOMATOES IN JUICE"] )
+      food.create_ingredients(ingredient_list)
+      expect(food.ingredients.pluck(:name)).to eq(['TOMATO PUREE', 'DICED TOMATOES IN JUICE'])
     end
   end
 end

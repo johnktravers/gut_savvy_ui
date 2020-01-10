@@ -27,7 +27,7 @@
     <%= link_to 'Add a New Dish', new_dish_path, class:"btn btn-info m-4" %>
   </p>
 </section>
-<section class='text-center m-4 border rounded p-4'>
+<section class='text-center m-4 box rounded p-4'>
   <h4 class='mb-3'>Done Adding Dishes?</h4>
   <%= form_for Meal.new do |f| %>
     <%= f.text_field :title, placeholder: 'Meal Title' %>

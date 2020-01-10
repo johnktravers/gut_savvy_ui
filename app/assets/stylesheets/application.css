@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
+
 #barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
   display: none;
 }
@@ -35,4 +35,16 @@
 
 svg {
   height:500px;
+}
+
+.graph-hr {
+  border-top: 3px solid darkgrey;
+}
+
+.box {
+  border: 3px solid darkgrey;
+}
+
+h1 {
+  text-decoration: underline;
 }

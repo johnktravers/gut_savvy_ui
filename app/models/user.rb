@@ -24,7 +24,7 @@ class User < ApplicationRecord
     worst_ingredients.map do |ingredient|
       {
         name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling
+        avg_gut_feeling: ingredient.avg_gut_feeling.round(2)
       }
     end[0..24]
   end
@@ -42,7 +42,7 @@ class User < ApplicationRecord
     best_ingredients.map do |ingredient|
       {
         name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling
+        avg_gut_feeling: ingredient.avg_gut_feeling.round(2)
       }
     end[0..24]
   end

@@ -30,7 +30,7 @@
                   <strong><%= ingredient.times_eaten(current_user) %></strong>
                 </td>
                 <td class='text-center'>
-                  <strong><%= ingredient.average_gut_feeling(current_user) %></strong>
+                  <strong><%= ingredient.average_gut_feeling(current_user).round(2) %></strong>
                 </td>
               </tr>
             <% end %>
@@ -40,7 +40,7 @@
         <p>You haven't logged any meals</p>
       <% end %>
     </section>
-
+    <hr class = 'm-5 graph-hr'>
     <h3>Worst Ingredients</h3>
     <%= content_tag :div, '',
     id: 'worst-ingredients-graph',
@@ -49,7 +49,7 @@
     <br>
     <br>
     <br>
-    <hr class = 'm-5'>
+    <hr class = 'm-5 graph-hr'>
     <h3>Best Ingredients</h3>
     <%= content_tag :div, '',
     id: 'best-ingredients-graph',
@@ -58,7 +58,7 @@
     <br>
     <br>
     <br>
-    <hr class = 'm-5'>
+    <hr class = 'm-5 graph-hr'>
     <h3>Gut Feeling Timeline</h3>
     <%= content_tag :div, '',
     id: 'gut-feeling-timeline',

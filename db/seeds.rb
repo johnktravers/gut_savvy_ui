@@ -23,7 +23,7 @@ user = User.create!(
 )
 
 meal_hash = {
-  'Breakfast, 2019-12-21 14:54:09 UTC, -4' =>
+  'Breakfast, 2019-12-21 14:54:09 UTC, -3' =>
   [
     { 'Raspberry Greek Yogurt' =>
       {
@@ -34,12 +34,12 @@ meal_hash = {
     { 'Cinnamon Raisin Bagel with Cream Cheese' =>
       {
         cream_cheese:     '070852992280',
-        cin_raisin_bagel: '075925401249'
+        toast:            '664541000013'
       }
     }
   ],
 
-  'Dinner, 2019-12-21 01:01:31 UTC, 3' =>
+  'Dinner, 2019-12-21 01:01:31 UTC, 1' =>
   [
     { 'Bowties with Marinara' =>
       {
@@ -47,15 +47,10 @@ meal_hash = {
         marinara_sauce: '041129077122',
         olive_oil:      '078742058238'
       }
-    },
-    { 'Garlic Bread' =>
-      {
-        garlic_bread: '077890448410'
-      }
     }
   ],
 
-  'Breakfast, 2019-12-22 14:41:09 UTC, 4' =>
+  'Breakfast, 2019-12-22 14:41:09 UTC, 3' =>
   [
     { 'Raisin Bran with Almond Milk' =>
       {
@@ -74,7 +69,7 @@ meal_hash = {
     }
   ],
 
-  'Dinner, 2019-12-22 23:01:31 UTC, 3' =>
+  'Dinner, 2019-12-22 23:01:31 UTC, 2' =>
   [
     { 'Chicken Coconut Curry' =>
       {
@@ -85,7 +80,7 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2019-12-23 14:20:17 UTC, 4' =>
+  'Breakfast, 2019-12-23 14:20:17 UTC, 3' =>
   [
     { 'Hot Cereal' =>
       {
@@ -95,14 +90,13 @@ meal_hash = {
     }
   ],
 
-  'Lunch, 2019-12-23 19:34:25 UTC, 3' =>
+  'Lunch, 2019-12-23 19:34:25 UTC, 2' =>
   [
     { 'Turkey Sandwich' =>
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Apple Juice' =>
@@ -116,7 +110,7 @@ meal_hash = {
   [
     { 'Chocolate Sandwich Cookie' =>
       {
-        chocolate_cookie: '845777005984'
+        cookie: '859117001093'
       }
     }
   ],
@@ -125,17 +119,14 @@ meal_hash = {
   [
     { 'Chicken Enchiladas' =>
       {
-        wheat_tortilla:  '073731004197',
         chicken:         '796853100065',
-        salsa:           '609207865858',
-        enchilada_sauce: '054791100098',
         black_beans:     '099482441630',
         pepper_jack:     '275148002838'
       }
     }
   ],
 
-  'Healthy Breakfast, 2019-12-25 14:54:09 UTC, 5' =>
+  'Healthy Breakfast, 2019-12-25 14:54:09 UTC, 3' =>
   [
     { 'Almond Milk Cereal' =>
       {
@@ -150,14 +141,13 @@ meal_hash = {
     }
   ],
 
-  'Lunch, 2019-12-25 19:34:25 UTC, 5' =>
+  'Lunch, 2019-12-25 19:34:25 UTC, 3' =>
   [
     { 'Turkey Sandwich' =>
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Orange Juice' =>
@@ -167,16 +157,16 @@ meal_hash = {
     }
   ],
 
-  'Treat, 2019-12-25 20:30:25 UTC, -5' =>
+  'Treat, 2019-12-25 20:30:25 UTC, -4' =>
   [
     { 'Lowfat Ice Cream' =>
       {
-        ice_cream: '070640009930'
+        ice_cream: '044100244889'
       }
     }
   ],
 
-  'Soup Dinner, 2019-12-25 23:01:31 UTC, 4' =>
+  'Soup Dinner, 2019-12-25 23:01:31 UTC, 3' =>
   [
     { 'Vegetable Soup' =>
       {
@@ -185,24 +175,23 @@ meal_hash = {
     }
   ],
 
-  'Sweet Breakfast, 2019-12-26 14:50:09 UTC, -5' =>
+  'Sweet Breakfast, 2019-12-26 14:50:09 UTC, -3' =>
   [
     { 'Lucky Charms Cereal' =>
       {
         sweetened_milk: '815473010414',
-        lucky_charms_cereal: '042400069379'
+        sweet_cereal:   '042400069379'
       }
     }
   ],
 
-  'Lunch, 2019-12-26 19:34:25 UTC, 4' =>
+  'Lunch, 2019-12-26 19:34:25 UTC, 2' =>
   [
     { 'Turkey Sandwich' =>
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Apple Juice' =>
@@ -212,7 +201,7 @@ meal_hash = {
     }
   ],
 
-  'Salad Dinner, 2019-12-26 23:21:31 UTC, 5' =>
+  'Salad Dinner, 2019-12-26 23:21:31 UTC, 3' =>
   [
     { 'Aragula and Brocolli Salad' =>
       {
@@ -222,12 +211,12 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2019-12-27 14:21:17 UTC, 3' =>
+  'Breakfast, 2019-12-27 14:21:17 UTC, 2' =>
   [
     { 'Hot Cereal' =>
       {
         hot_cereal:       '072400060083',
-        cin_raisin_bagel: '075925401249'
+        toast:            '664541000013'
       }
     }
   ],
@@ -246,7 +235,7 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2019-12-27 20:56:25 UTC, -3' =>
+  'Snack, 2019-12-27 20:56:25 UTC, -2' =>
   [
     { 'Toffee' =>
       {
@@ -255,7 +244,7 @@ meal_hash = {
     }
   ],
 
-  'Dinner, 2019-12-27 23:01:31 UTC, -4' =>
+  'Dinner, 2019-12-27 23:01:31 UTC, -3' =>
   [
     { 'Lasagna' =>
       {
@@ -265,7 +254,7 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2019-12-28 14:21:17 UTC, 4' =>
+  'Breakfast, 2019-12-28 14:21:17 UTC, 3' =>
   [
     { 'Granola and Cereal' =>
       {
@@ -282,8 +271,7 @@ meal_hash = {
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Juice' =>
@@ -293,16 +281,16 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2019-12-28 20:56:25 UTC, -3' =>
+  'Snack, 2019-12-28 20:56:25 UTC, -5' =>
   [
     { 'Ice Cream' =>
       {
-        ice_cream: '070640009930'
+        ice_cream: '044100244889'
       }
     }
   ],
 
-  'Dinner, 2019-12-28 23:01:31 UTC, 4' =>
+  'Dinner, 2019-12-28 23:01:31 UTC, 3' =>
   [
     { 'Salad' =>
       {
@@ -317,13 +305,13 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2019-12-29 14:21:17 UTC, -3' =>
+  'Breakfast, 2019-12-29 14:21:17 UTC, -2' =>
   [
     { 'Yogurt and Cream Cheese Bagel' =>
       {
         greek_yogurt:     '818290013613',
         cream_cheese:     '070852992280',
-        cin_raisin_bagel: '075925401249'
+        toast:            '664541000013'
       }
     }
   ],
@@ -344,11 +332,11 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2019-12-29 20:56:25 UTC, -5' =>
+  'Snack, 2019-12-29 20:56:25 UTC, -4' =>
   [
     { 'Ice Cream' =>
       {
-        ice_cream: '070640009930'
+        ice_cream: '044100244889'
       }
     }
   ],
@@ -363,13 +351,11 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2019-12-30 14:21:17 UTC, -4' =>
+  'Breakfast, 2019-12-30 14:21:17 UTC, -5' =>
   [
-    { 'Lucky Charms' =>
+    { 'Milk' =>
       {
-        lucky_charms_cereal: '042400069379',
-        sweetened_milk:      '815473010414',
-        greek_yogurt:        '818290013613'
+        sweetened_milk: '815473010414'
       }
     }
   ],
@@ -380,8 +366,7 @@ meal_hash = {
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Juice' =>
@@ -395,7 +380,7 @@ meal_hash = {
   [
     { 'Cookie' =>
       {
-        chocolate_cookie: '845777005984'
+        cookie: '859117001093'
       }
     }
   ],
@@ -406,18 +391,17 @@ meal_hash = {
       {
         farfalle:       '085239005392',
         marinara_sauce: '041129077122',
-        olive_oil:      '078742058238',
-        garlic_bread:   '077890448410'
+        olive_oil:      '078742058238'
       }
     }
   ],
 
-  'Breakfast, 2019-12-31 14:21:17 UTC, -4' =>
+  'Breakfast, 2019-12-31 14:21:17 UTC, -3' =>
   [
     { 'Cream Cheese Bagel' =>
       {
         cream_cheese:     '070852992280',
-        cin_raisin_bagel: '075925401249',
+        toast:            '664541000013',
         greek_yogurt:     '818290013613'
       }
     }
@@ -427,10 +411,7 @@ meal_hash = {
   [
     { 'Quesadilla' =>
       {
-        wheat_tortilla:  '073731004197',
         chicken:         '796853100065',
-        salsa:           '609207865858',
-        enchilada_sauce: '054791100098',
         black_beans:     '099482441630',
         pepper_jack:     '275148002838'
       }
@@ -442,16 +423,16 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2019-12-31 20:56:25 UTC, -3' =>
+  'Snack, 2019-12-31 20:56:25 UTC, -5' =>
   [
     { 'Ice Cream' =>
       {
-        ice_cream: '070640009930'
+        ice_cream: '044100244889'
       }
     }
   ],
 
-  'Dinner, 2019-12-31 23:01:31 UTC, 4' =>
+  'Dinner, 2019-12-31 23:01:31 UTC, 3' =>
   [
     { 'Soup and Salad' =>
       {
@@ -462,12 +443,12 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2020-01-01 14:21:17 UTC, 3' =>
+  'Breakfast, 2020-01-01 14:21:17 UTC, 2' =>
   [
     { 'Bagel and Jam' =>
       {
         raspberry_jam:    '640671889988',
-        cin_raisin_bagel: '075925401249',
+        toast:            '664541000013',
         orange_juice:     '041303026793'
       }
     }
@@ -487,11 +468,11 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2020-01-01 20:56:25 UTC, -4' =>
+  'Snack, 2020-01-01 20:56:25 UTC, -2' =>
   [
     { 'Cookie' =>
       {
-        chocolate_cookie: '845777005984'
+        cookie: '859117001093'
       }
     }
   ],
@@ -520,7 +501,6 @@ meal_hash = {
     { 'Pizza' =>
       {
         pizza:        '856497004034',
-        garlic_bread: '077890448410',
         cheese:       '073866210166'
       }
     },
@@ -531,11 +511,11 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2020-01-02 20:56:25 UTC, -1' =>
+  'Snack, 2020-01-02 20:56:25 UTC, -4' =>
   [
     { 'Ice Cream' =>
       {
-        ice_cream: '070640009930'
+        ice_cream: '044100244889'
       }
     }
   ],
@@ -556,15 +536,14 @@ meal_hash = {
       {
         greek_yogurt:         '818290013613',
         cream_cheese:         '070852992280',
-        cin_raisin_bagel:     '075925401249',
-        lucky_charms_cereal:  '042400069379',
+        sweet_cereal:         '042400069379',
         sweetened_milk:       '815473010414',
         cheese:               '073866210166'
       }
     }
   ],
 
-  'Lunch, 2020-01-03 19:32:25 UTC, 4' =>
+  'Lunch, 2020-01-03 19:32:25 UTC, 3' =>
   [
     { 'Salad' =>
       {
@@ -604,7 +583,7 @@ meal_hash = {
       {
         greek_yogurt:     '818290013613',
         raspberry_jam:    '640671889988',
-        cin_raisin_bagel: '075925401249',
+        toast:            '664541000013',
         raisin_bran:      '708820033429',
         almond_milk:      '025293002043'
       }
@@ -618,7 +597,6 @@ meal_hash = {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
         mixed_greens: '041443112721',
-        mustard:      '011110865540',
         pepper_jack:  '275148002838'
       }
     },
@@ -633,12 +611,12 @@ meal_hash = {
   [
     { 'Cookie' =>
       {
-        chocolate_cookie: '845777005984'
+        cookie: '859117001093'
       }
     }
   ],
 
-  'Dinner, 2020-01-04 23:01:31 UTC, 5' =>
+  'Dinner, 2020-01-04 23:01:31 UTC, 4' =>
   [
     { 'Soup and Salad' =>
       {
@@ -666,8 +644,7 @@ meal_hash = {
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Juice' =>
@@ -699,11 +676,9 @@ meal_hash = {
 
   'Breakfast, 2020-01-06 14:21:17 UTC, -5' =>
   [
-    { 'Yogurt and Cereal' =>
+    { 'Milk' =>
       {
-        greek_yogurt:     '818290013613',
         cream_cheese:     '070852992280',
-        cin_raisin_bagel: '075925401249',
         sweetened_milk:   '815473010414'
       }
     }
@@ -742,7 +717,7 @@ meal_hash = {
     }
   ],
 
-  'Breakfast, 2020-01-07 14:21:17 UTC, 4' =>
+  'Breakfast, 2020-01-07 14:21:17 UTC, 3' =>
   [
     { 'Raisin Bran' =>
       {
@@ -781,17 +756,16 @@ meal_hash = {
   [
     { 'Pizza' =>
       {
-        pizza:        '856497004034',
-        garlic_bread: '077890448410'
+        pizza: '856497004034'
       }
     }
   ],
 
-  'Breakfast, 2020-01-08 14:21:17 UTC, -4' =>
+  'Breakfast, 2020-01-08 14:21:17 UTC, -3' =>
   [
     { 'Sweet Cereal' =>
       {
-        lucky_charms_cereal: '042400069379',
+        sweet_cereal: '042400069379',
         sweetened_milk:      '815473010414'
       }
     }
@@ -803,8 +777,7 @@ meal_hash = {
       {
         wheat_bread:  '025911000130',
         turkey:       '011110005687',
-        mixed_greens: '041443112721',
-        mustard:      '011110865540'
+        mixed_greens: '041443112721'
       }
     },
     { 'Juice' =>
@@ -838,14 +811,14 @@ meal_hash = {
     { 'Hot Cereal' =>
       {
         raspberry_jam:    '640671889988',
-        cin_raisin_bagel: '075925401249',
+        toast:            '664541000013',
         hot_cereal:       '072400060083',
         almond_milk:      '025293002043'
       }
     }
   ],
 
-  'Lunch, 2020-01-09 19:32:25 UTC, 4' =>
+  'Lunch, 2020-01-09 19:32:25 UTC, 2' =>
   [
     { 'Salad' =>
       {
@@ -860,7 +833,7 @@ meal_hash = {
     }
   ],
 
-  'Snack, 2020-01-09 20:56:25 UTC, 5' =>
+  'Snack, 2020-01-09 20:56:25 UTC, 4' =>
   [
     { 'Ginger' =>
       {
@@ -873,10 +846,7 @@ meal_hash = {
   [
     { 'Chicken Quesadilla' =>
       {
-        wheat_tortilla:  '073731004197',
         chicken:         '796853100065',
-        salsa:           '609207865858',
-        enchilada_sauce: '054791100098',
         black_beans:     '099482441630',
         pepper_jack:     '275148002838'
       }
@@ -888,7 +858,7 @@ meal_hash = {
     { 'Cereal and Bagel' =>
       {
         raspberry_jam:    '640671889988',
-        cin_raisin_bagel: '075925401249',
+        toast:            '664541000013',
         oat_cereal:       '058449771036',
         almond_milk:      '025293002043'
       }
@@ -912,7 +882,11 @@ meal_hash = {
 }
 
 def create_food_and_ingredients(upc, meal)
-  unless food = Food.find_by(upc: upc)
+  if food = Food.find_by(upc: upc)
+    food.ingredients.each do |ingredient|
+      meal.meal_ingredients.create!(ingredient: ingredient)
+    end
+  else
     response = get_food_info(upc)
 
     food_info = JSON.parse(response.body)['foods'].first
@@ -938,7 +912,6 @@ def create_food_and_ingredients(upc, meal)
       food.food_ingredients.create!(ingredient: ingredient)
       meal.meal_ingredients.create!(ingredient: ingredient)
     end
-    food
   end
   food
 end

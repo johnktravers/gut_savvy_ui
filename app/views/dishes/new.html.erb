@@ -1,5 +1,14 @@
 <h1 class='m-4 text-center'>Create a Dish</h1>
 
+<section class="text-center m-4 box rounded p-4">
+  <h4 class="mb-3">Done Adding Foods?</h4>
+  <%= form_for Dish.new do |f| %>
+  <%= f.text_field :name, placeholder: 'Dish Name' %>
+
+  <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
+  <% end %>
+</section>
+
 <section class="current-foods px-5">
   <h3 class='m-4 text-center'>Foods in this Dish</h3>
   <% if @foods.any? %>
@@ -33,16 +42,6 @@
     <%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info mb-4' %>
   </p>
 </section>
-
-<section class="text-center m-4 box rounded p-4">
-  <h4 class="mb-3">Done Adding Foods?</h4>
-  <%= form_for Dish.new do |f| %>
-  <%= f.text_field :name, placeholder: 'Dish Name' %>
-
-  <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
-  <% end %>
-</section>
-
 
 <section class="previous-foods px-5">
   <h3 class='m-4 text-center'>Select From Previous Foods</h3>

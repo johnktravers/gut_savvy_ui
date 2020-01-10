@@ -45,12 +45,15 @@ This project was created as a two week school project, but continued support and
 **Authors:**
 
 
-Christopher Kelling, John Travers, Jonathan Patterson, Ryan Hantak
+* [Christopher Kelling](https://github.com/cjkelling)
+* [John Travers](https://github.com/johnktravers)
+* [Jonathan Patterson](https://github.com/jonpatt92)
+* [Ryan Hantak](https://github.com/rhantak)
 
 
 **Support:**
 
 
-Each of the authors of this program have a presence on GitHub. Reach out to them on GitHub for help or support for this program.
+Reach out to us on Github for help or support for this program.
 
 

@@ -96,15 +96,15 @@
     ymax: 0,
     ymin: -5,
     barColors: function (info) {
-      if(info.y <= -4) {
+      if(info.y < -4) {
         return colorArrayBad[0];
-      } else if (info.y <= -3) {
+      } else if (info.y < -3.5) {
         return colorArrayBad[1];
-      } else if (info.y <= -2) {
+      } else if (info.y < -3.3) {
         return colorArrayBad[2];
-      } else if (info.y <= -1) {
+      } else if (info.y < -3) {
           return colorArrayBad[3];
-      } else if (info.y <= 0) {
+      } else if (info.y < 2) {
           return colorArrayBad[4];
       }
     }
@@ -132,11 +132,11 @@
     barColors: function (info) {
       if(info.y > 4) {
         return colorArrayGood[0];
-      } else if (info.y > 3) {
+      } else if (info.y > 3.5) {
         return colorArrayGood[1];
-      } else if (info.y > 2) {
+      } else if (info.y > 3) {
         return colorArrayGood[2];
-      } else if (info.y > 1) {
+      } else if (info.y > 2) {
           return colorArrayGood[3];
       } else if (info.y > 0) {
           return colorArrayGood[4];

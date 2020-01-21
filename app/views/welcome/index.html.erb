@@ -1,11 +1,44 @@
-<h1 class='m-4 text-center'>Welcome to Gut Savvy</h1>
+<!-- Background Image -->
+<div class="carousel slide landing-bg" data-ride="carousel">
+  <div class="carousel-inner">
+    <img src="<%= image_url('food-bg.jpg') %>" alt="Quinoa veggie dish" class="bg-img">
+    <div class="carousel-caption">
+      <h1 class="display-4">Gut Savvy</h1>
+      <h3>Get to know your gut</h3>
+      <a href="/auth/google_oauth2"><img src="<%= image_url('btn_google_signin_dark_normal_web@2x.png') %>" alt="Sign in with Google" id="signin"></a>
+    </div>
+  </div>
+</div>
 
-<section class='container'>
-  <h3 class='m-4 text-center'>About the Application</h3>
-  <p class='text-center'>Gut Savvy is a new app that helps users track the food that they eat and
-    allows users to rate their gut feelings after a meal. These ratings are stored
-    in our system and used to correlations between food ingredients and the
-    ratings the users give them. Our app will then give the user results that
-    indicate the best and worst foods for their gut, based on the users own gut
-    feelings.</p>
-</section>
+<!-- Five Column Section -->
+<div class="container-fluid padding">
+  <h1 class="text-center m-4">How it Works</h1>
+  <div class="row text-center padding justify-content-center">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <i class="fas fa-barcode fa-5x m-2 blue-icon"></i>
+      <h3>Scan Food</h3>
+      <p>Scan food product barcodes using your camera</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <i class="fas fa-carrot fa-5x m-2 green-icon"></i>
+      <h3>Create Dish</h3>
+      <p>Group food products into a dish</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <i class="fas fa-hamburger fa-5x m-2 yellow-icon"></i>
+      <h3>Log Meal</h3>
+      <p>Group dishes that you eat together into a meal</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <i class="far fa-smile fa-5x m-2 blue-icon"></i>
+      <h3>Rate Feeling</h3>
+      <p>Rate how you feel 1-3 hours after eating</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2">
+      <i class="far fa-chart-bar fa-5x m-2 green-icon"></i>
+      <h3>See Results</h3>
+      <p>Find out which ingredients strongly affect your gut</p>
+    </div>
+  </div>
+  <hr class="my-4">
+</div>

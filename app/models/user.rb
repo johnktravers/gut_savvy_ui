@@ -30,17 +30,11 @@ class User < ApplicationRecord
   end
 
   def ingredient_table_data
-    ingredients.find_by_sql('
-      SELECT
-          ingredients.*,
-          avg(meals.gut_feeling) as avg_gut_feeling,
-          count(ingredients.id) as frequency
-        FROM ingredients
-        INNER JOIN meal_ingredients ON meal_ingredients.ingredient_id = ingredients.id
-        INNER JOIN meals ON meals.id = meal_ingredients.meal_id
-        GROUP BY ingredients.id
-        ORDER BY avg_gut_feeling
-    ')
+    ingredients.joins(:meals).
+    includes(:foods).
+    select('ingredients.*, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
+    group('ingredients.id').
+    order('avg_gut_feeling')
   end
 
   def worst_ingredients

@@ -18,19 +18,19 @@
             </tr>
           </thead>
           <tbody>
-            <% @ingredients.each do |ingredient| %>
+            <% current_user.ingredient_table_data.each do |ingredient| %>
               <tr id="ingredient-<%= ingredient.id %>">
                 <td><%= ingredient.name %></td>
                 <td>
-                  <% ingredient.all_foods(current_user).each do |food| %>
+                  <% ingredient.foods.each do |food| %>
                     <%= food.name %><br>
                   <% end %>
                 </td>
                 <td class='text-center'>
-                  <strong><%= ingredient.times_eaten(current_user) %></strong>
+                  <strong><%= ingredient.frequency %></strong>
                 </td>
                 <td class='text-center'>
-                  <strong><%= ingredient.average_gut_feeling(current_user).round(2) %></strong>
+                  <strong><%= ingredient.avg_gut_feeling.round(2) %></strong>
                 </td>
               </tr>
             <% end %>

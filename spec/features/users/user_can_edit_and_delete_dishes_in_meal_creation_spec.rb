@@ -4,7 +4,7 @@ RSpec.describe 'As a user' do
   describe 'When I visit the meal creation page with dishes in my current meal' do
     before(:each) do
       omniauth_setup
-      visit sign_in_path
+      visit root_path
       click_link 'Sign in with Google'
       @user = User.last
     end
@@ -21,7 +21,10 @@ RSpec.describe 'As a user' do
       @user.meals.push(meal)
 
       visit '/dashboard'
-      click_link 'Log a Meal'
+
+      within "#dashboard-links" do
+        click_link 'Log a Meal'
+      end
 
       within("#dish-#{dish_1.id}") do
         click_button 'Add'
@@ -44,7 +47,10 @@ RSpec.describe 'As a user' do
 
     it 'I can click the edit button to go to a prefilled dish creation page' do
       visit '/dashboard'
-      click_link 'Log a Meal'
+
+      within "#dashboard-links" do
+        click_link 'Log a Meal'
+      end
 
       click_link 'Add a New Dish'
       click_link 'Add a New Food'

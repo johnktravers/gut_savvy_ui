@@ -4,13 +4,13 @@ RSpec.describe 'As a registered user' do
   describe 'When I have saved dishes' do
     it "I can reuse them in new meals" do
       omniauth_setup
-      visit sign_in_path
+      visit root_path
       click_link 'Sign in with Google'
       @user = User.last
 
       Faker::UniqueGenerator.clear # Clears used values for all generators
       Ingredient.destroy_all
-      
+
       fi_1 = create(:food_ingredient)
       fi_2 = create(:food_ingredient)
       fi_3 = create(:food_ingredient)
@@ -24,7 +24,10 @@ RSpec.describe 'As a registered user' do
       @user.meals.push(meal)
 
       visit '/dashboard'
-      click_link 'Log a Meal'
+
+      within "#dashboard-links" do 
+        click_link 'Log a Meal'
+      end
 
       within(".dish-history") do
         expect(page).to have_css("#dish-#{dish_1.id}")

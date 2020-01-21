@@ -75,11 +75,11 @@ RSpec.describe Meal, type: :model do
       meal.dishes.push(dish_1, dish_2)
 
       meal.create_meal_ingredients
-      expect(meal.ingredients).to eq([fi_1.ingredient,
-                                      fi_2.ingredient,
-                                      fi_3.ingredient,
-                                      fi_4.ingredient]
-                                    )
+      expect(meal.ingredients).to include(fi_1.ingredient,
+                                          fi_2.ingredient,
+                                          fi_3.ingredient,
+                                          fi_4.ingredient
+                                        )
     end
   end
 end

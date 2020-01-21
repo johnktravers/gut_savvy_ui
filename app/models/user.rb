@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   def worst_ingredients
     ingredients.joins(:meals).
-    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, count(ingredients.id) as frequency').
+    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
     group('ingredients.id').
     having('avg(meals.gut_feeling) < 0').
     having('count(ingredients.id) > 2').
@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
   def best_ingredients
     ingredients.joins(:meals).
-    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, count(ingredients.id) as frequency').
+    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
     group('ingredients.id').
     having('avg(meals.gut_feeling) > 0').
     having('count(ingredients.id) > 2').

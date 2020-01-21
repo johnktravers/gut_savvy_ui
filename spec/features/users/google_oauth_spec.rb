@@ -4,7 +4,7 @@ RSpec.describe 'As a visitor' do
   before :each do
     omniauth_setup
 
-    visit sign_in_path
+    visit root_path
     click_link 'Sign in with Google'
     @user = User.last
   end
@@ -28,9 +28,6 @@ RSpec.describe 'As a visitor' do
   it 'can login with Google OAuth' do
     click_link 'Logout'
     click_link 'Sign In'
-
-    expect(current_path).to eq(sign_in_path)
-    click_link 'Sign in with Google'
 
     expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome, #{@user.name}! You have successfully logged in!")

@@ -13,7 +13,9 @@ RSpec.describe 'As a user' do
     it 'I can log a meal' do
       visit dashboard_path
 
-      click_link 'Log a Meal'
+      within "#dashboard-links" do
+        click_link 'Log a Meal'
+      end
 
       expect(current_path).to eq(new_meal_path)
     end

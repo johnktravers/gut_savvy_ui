@@ -11,7 +11,7 @@ RSpec.describe 'As a user' do
 
     it 'I can visit my results page from the landing page' do
       visit '/'
-      within ".navbar-nav" do
+      within ".navbar" do
         click_link 'Results'
       end
 

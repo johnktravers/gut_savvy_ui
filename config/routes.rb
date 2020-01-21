@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/help',                        to: 'help#show'
-  get '/sign_in',                     to: 'users#new'
   get '/dashboard',                   to: 'users#show'
 
   get '/results',                     to: 'results#index'

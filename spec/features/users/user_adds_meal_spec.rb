@@ -4,14 +4,17 @@ RSpec.describe 'As a registered user' do
   describe 'When I navigate to the add a new meal page' do
     before(:each) do
       omniauth_setup
-      visit sign_in_path
+      visit root_path
       click_link 'Sign in with Google'
       @user = User.last
     end
 
     it "I see a button to add a new meal" do
       visit '/dashboard'
-      click_link 'Log a Meal'
+
+      within "#dashboard-links" do 
+        click_link 'Log a Meal'
+      end
 
       expect(current_path).to eq(new_meal_path)
     end

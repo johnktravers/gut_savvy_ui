@@ -14,6 +14,8 @@
  *= require_self
  */
 
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two&display=swap');
+
 #barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
   display: none;
 }
@@ -52,4 +54,85 @@ h1 {
 
 .box-title {
   text-decoration: underline;
+}
+
+/* .landing-bg {
+  background-size: cover;
+  width: 100%;
+} */
+
+.blue-icon {
+  color: #6BA8EC;
+}
+
+.green-icon {
+  color: #3C8059;
+}
+
+.yellow-icon {
+  color: #DEB887;
+}
+
+.carousel-inner img {
+  width: 100%;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-caption h1 {
+  font-family: 'Lobster Two', cursive;
+  font-size: 700%;
+  text-shadow: 2px 2px 10px #000;
+  text-decoration: none !important;
+}
+
+.carousel-caption h3 {
+  font-size: 200%;
+  text-shadow: 2px 2px 10px #000;
+  padding-bottom: 1rem;
+}
+
+.btn-info {
+  background-color: #3C8059;
+  border: 1px solid #003414;
+}
+
+.lobster {
+  font-family: 'Lobster Two', cursive;
+}
+
+.navbar {
+  padding: .8rem;
+}
+
+.navbar-nav li {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.nav-link {
+  font-size: 1.1em !important;
+}
+
+.navbar-brand {
+  font-size: 2em !important;
+  left: 50%;
+  margin-left: -50px !important;
+  position: absolute;
+  display: block;
+  top: 0px;
+}
+
+.navbar {
+  position: relative;
+  background-color: #2E933C !important;
+}
+
+#signin {
+  width: 191px;
+  height: 46px;
 }

@@ -51,20 +51,22 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
               brand: food_data['brandOwner'],
                 upc: food_data['gtinUpc'],
         ingredients: process_ingredients(food_data['ingredients']) }
-    end
     food
+    end
   end
 
   def process_ingredients(ingredient_list)
     formatted_ingredients    = format_ingredients(ingredient_list)
-    consolidated_ingredients = consolidate_ingredients(formatted_ingredients)
-    validate_ingredients(consolidated_ingredients).uniq
+    consolidated_ingredients = consolidate_ingredients(formatted_ingredients).uniq.compact
+    validate_ingredients(consolidated_ingredients)
   end
 
   def consolidate_ingredients(ingredients)
     ingredients.map! do |ingredient|
       if ingredient.include?("MILK")
         ingredient.replace("MILK") unless not_dairy_milk?(ingredient)
+      elsif ingredient.include?("SALT")
+        ingredient.replace("SALT")
       else
         ingredient
       end

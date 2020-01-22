@@ -1,13 +1,4 @@
-task :create_most_ingredients, [:pages] => :environment do |task, args|
-
-  User.destroy_all
-  Meal.destroy_all
-  MealIngredient.destroy_all
-  Dish.destroy_all
-  DishFood.destroy_all
-  Food.destroy_all
-  FoodIngredient.destroy_all
-  Ingredient.destroy_all
+task :create_most_ingredients => [:environment] do
 
   user = User.create!(
     uid:   '106085974130307620137',
@@ -17,7 +8,6 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
   )
   meal = user.meals.create!(title: "Everything You Have", gut_feeling: 0)
   dish = meal.dishes.create!(name: "All the bacon and eggs you have")
-
   def create_foods_and_ingredients(foods, meal, dish)
     foods.each do |food_data|
       if food = Food.find_by(upc: food_data["gtinUpc"])
@@ -119,6 +109,6 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
     end
   end
 
-  foods_data = compile_food_data(args.pages.to_i)
+  foods_data = compile_food_data(400)
   create_foods_and_ingredients(foods_data, meal, dish)
 end

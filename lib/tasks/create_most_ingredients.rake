@@ -111,6 +111,6 @@ task :create_most_ingredients => [:environment] do
     end
   end
 
-  foods_data = compile_food_data(400)
+  foods_data = compile_food_data(200)
   create_foods_and_ingredients(foods_data, meal, dish)
 end

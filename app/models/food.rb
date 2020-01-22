@@ -14,8 +14,9 @@ class Food < ApplicationRecord
 
   def create_ingredients(ingredient_list)
     ingredient_list.each do |name|
-      unless ingredient = Ingredient.find_by(name: name)
-        ingredient = Ingredient.create(name: name)
+      titleized_name = name.downcase.titleize
+      unless ingredient = Ingredient.find_by(name: titleized_name)
+        ingredient = Ingredient.create(name: titleized_name)
       end
       food_ingredients.create(ingredient: ingredient)
     end

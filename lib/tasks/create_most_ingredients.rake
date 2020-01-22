@@ -22,25 +22,25 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
     foods.each do |food_data|
       if food = Food.find_by(upc: food_data["gtinUpc"])
         food.ingredients.each do |ingredient|
-          meal.meal_ingredients.create!(ingredient: ingredient)
+          meal.meal_ingredients.create(ingredient: ingredient)
         end
       else
         processed_food_data = process_food_data(food_data)
 
-        food = Food.create!(
-          name: processed_food_data[:name],
-          brand: processed_food_data[:brand],
-          upc: processed_food_data[:upc]
-        )
+          food = Food.create(
+            name: processed_food_data[:name],
+            brand: processed_food_data[:brand],
+            upc: processed_food_data[:upc]
+          )
 
-        processed_food_data[:ingredients].each do |name|
-          unless ingredient = Ingredient.find_by(name: name)
-            ingredient = Ingredient.create!(name: name)
+          processed_food_data[:ingredients].each do |name|
+            unless ingredient = Ingredient.find_by(name: name)
+              ingredient = Ingredient.create(name: name)
+            end
+            food.food_ingredients.create(ingredient: ingredient)
+            meal.meal_ingredients.create(ingredient: ingredient)
           end
-          food.food_ingredients.create!(ingredient: ingredient)
-          meal.meal_ingredients.create!(ingredient: ingredient)
-        end
-        food.dish_foods.create!(dish: dish)
+          food.dish_foods.create(dish: dish)
       end
     end
   end

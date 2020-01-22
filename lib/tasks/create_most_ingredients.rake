@@ -104,8 +104,10 @@ task :create_most_ingredients => [:environment] do
     Faraday.post('https://api.nal.usda.gov/fdc/v1/search') do |req|
       req.headers['Content-Type'] = 'application/json'
       req.params['api_key'] = ENV['FDC_API_KEY']
-      req.body = {includeDataTypeList: ["Branded"], pageNumber: page_number, sortField: "publishedDate",
-    sortDirection:"desc"}.to_json
+      req.body = { includeDataTypeList: ["Branded"],
+                           pageNumber: page_number,
+                            sortField: "publishedDate",
+                        sortDirection:"desc" }.to_json
     end
   end
 

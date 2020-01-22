@@ -1,9 +1,16 @@
-task :create_most_ingredients => :environment do
-  old_user = User.find_by(email: 'gutsavvyingredients@gmail.com')
-  old_user.destroy!
+task :create_most_ingredients, [:pages] => :environment do |task, args|
+
+  User.destroy_all
+  Meal.destroy_all
+  MealIngredient.destroy_all
+  Dish.destroy_all
+  DishFood.destroy_all
+  Food.destroy_all
+  FoodIngredient.destroy_all
+  Ingredient.destroy_all
 
   user = User.create!(
-    uid:   '104836038866663614183',
+    uid:   '106085974130307620137',
     name:  'Fly fishin Rick',
     email: 'gutsavvyingredients@gmail.com',
     token: ENV['GOOGLE_TOKEN_2']

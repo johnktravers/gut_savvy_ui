@@ -104,7 +104,7 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
     food_array = []
     until page_numbers == []
       response = get_food_info(page_numbers.shift)
-      food_array += JSON.parse(response.body)['foods']
+      food_array += JSON.parse(response.body)['foods'] if JSON.parse(response.body)['foods']
     end
     food_array
   end

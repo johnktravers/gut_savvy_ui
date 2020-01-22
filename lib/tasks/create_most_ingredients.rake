@@ -117,6 +117,6 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
     end
   end
 
-  foods_data = compile_food_data(11)
+  foods_data = compile_food_data(args.pages.to_i)
   create_foods_and_ingredients(foods_data, meal, dish)
 end

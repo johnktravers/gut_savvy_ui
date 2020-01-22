@@ -83,16 +83,15 @@ task :create_most_ingredients, [:pages] => :environment do |task, args|
   end
 
   def validate_ingredients(ingredients)
-    if ingredients
       ingredients.delete_if { |ingredient| ingredient.include?("WATER") }
       ingredients.delete_if { |ingredient| ingredient.include?("NATURAL FLAVOR") }
-    end
   end
 
   def format_ingredients(ingredient_list)
     ingredient_list
       .gsub(/ \[.*?\]/, '')
       .gsub(/ \(.*?\)/, '')
+      .gsub('ORGANIC ', '')
       .split('.').first
       .split(', 2%').first
       .split(', CONTAINS').first

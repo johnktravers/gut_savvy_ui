@@ -1,10 +1,6 @@
 <h1 class='m-4 text-center'>Your Results</h1>
 
 <section class='text-center m-4'>
-  <% if current_user.ratings_needed > 0 %>
-    <p>You must add a Gut Feeling to 12 meals before the results page will show your results</p>
-    <p>You need to log <%= current_user.ratings_needed %> more meals with Gut Feelings </p>
-  <% else %>
     <h3 class='m-4 text-center'>Your Eating History</h3>
     <section class="food-history px-5">
       <% if @ingredients.any? %>
@@ -68,12 +64,17 @@
     id: 'gut-feeling-timeline',
     class: 'm-auto',
     data: {gut_feelings: current_user.gut_feelings_over_time} %>
-  <% end %>
 
 <script>
   $(document).ready(function () {
     $('#ingredient-history').DataTable( {
-      "order": [[ 3, "asc" ]]
+      "order": [[ 3, "asc" ]],
+      "columns": [
+        null,
+        { "searchable": false },
+        null,
+        null
+      ]
     } );
   });
 </script>

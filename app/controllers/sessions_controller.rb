@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       if user.save
         session[:user_id] = user.id
         flash[:success] = "Welcome, #{user.name}! Your account has been created using Google."
-        redirect_to help_path
+        redirect_to dashboard_path
       end
     end
   end

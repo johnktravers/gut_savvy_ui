@@ -1,12 +1,12 @@
-<h1 class='m-4 text-center'>My Dashboard</h1>
+<h1 class='m-4 text-center'>Your Dashboard</h1>
 
 <p class='text-center' id='dashboard-links'>
-  <%= link_to "Log a Meal", new_meal_path, class: 'btn btn-info' %>
-  <%= link_to "See My Results", results_path, class: 'btn btn-success' %>
+  <%= link_to "Log a Meal", new_meal_path, class: 'btn btn-info mx-2' %>
+  <%= link_to "See Your Results", results_path, class: 'btn btn-success mx-2' %>
 </p>
 
-<h3 class='m-4 text-center'>Your Meals</h3>
-<section class="meals px-5">
+<h3 class='mt-5 text-center'>Meal History</h3>
+<section class="meals px-5 mb-4">
   <% if @meals.any? %>
     <table class="table table-striped table-bordered" id="user-meals">
       <thead class='thead-dark'>

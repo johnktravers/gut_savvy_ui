@@ -14,7 +14,7 @@
  *= require_self
  */
 
-@import url('https://fonts.googleapis.com/css?family=Lobster+Two&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two|Roboto:700&display=swap');
 
 #barcode-scanner canvas.drawingBuffer, #barcode-scanner video.drawingBuffer {
   display: none;
@@ -25,18 +25,33 @@
   height: 250px;
 }
 
-#worst-ingredients-graph {
-  height:350px;
-  padding-bottom:25px;
-}
-
-#best-ingredients-graph {
-  height:350px;
-  padding-bottom:25px;
+.current-foods, .previous-foods, .current-dishes, .dish-history {
+  width: 48%;
+  flex: 1;
 }
 
 svg {
   height:500px;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+}
+
+.worst-graph, .best-graph {
+  width: 48%;
+  background-color: #EEE;
+  flex: 1;
+  margin: 10px 5px 10px 5px;
+  padding: 15px 0px 5px 0px;
+}
+
+.timeline-graph {
+  width: 98%;
+  background-color: #EEE;
+  flex: 1;
+  margin: 0px 5px 10px 5px;
+  padding: 15px 0px 5px 0px;
 }
 
 .graph-hr {
@@ -48,18 +63,9 @@ svg {
   background-color: lightblue;
 }
 
-h1 {
-  text-decoration: underline;
-}
-
 .box-title {
   text-decoration: underline;
 }
-
-/* .landing-bg {
-  background-size: cover;
-  width: 100%;
-} */
 
 .blue-icon {
   color: #6BA8EC;

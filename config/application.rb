@@ -29,5 +29,8 @@ module GutSavvyUi
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Add node modules
+    config.assets.paths << Rails.root.join('node_modules')
   end
 end

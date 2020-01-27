@@ -1,75 +1,74 @@
 <h1 class='m-4 text-center'>Create a Dish</h1>
 
-<section class="current-foods px-5">
-  <h3 class='m-4 text-center'>Foods in this Dish</h3>
-  <% if @foods.any? %>
-    <table class="table table-striped table-bordered cart-table">
+<section class="row">
+  <section class="current-foods px-5">
+    <h3 class='mx-4 mb-4 text-center'>Foods in this Dish</h3>
+    <% if @foods.any? %>
+      <table class="table table-striped table-bordered" id="current-foods">
+        <thead class='thead-dark'>
+          <tr>
+            <th scope="col">Food Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col" class="text-center">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @foods.each do |food| %>
+            <tr id= "food-<%= food.id %>">
+              <td><%= food.name %></td>
+              <td><%= food.brand %></td>
+              <td class="text-center"><%= button_to 'Delete', "/sessions/dishes/#{food.id}", method: :delete, class: 'btn btn-sm btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center">There are currently no foods in this dish</p>
+    <% end %>
+
+    <p class="text-center">
+      <%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info mt-4 mb-4' %>
+    </p>
+
+    <section class="text-center m-4 box rounded p-4">
+      <h3 class="mb-3 box-title">Done Adding Foods?</h3>
+      <%= form_for Dish.new do |f| %>
+      <%= f.text_field :name, placeholder: 'Dish Name' %>
+
+      <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
+      <% end %>
+    </section>
+  </section>
+
+  <section class="previous-foods px-5 mb-4">
+    <h3 class='mx-4 mb-4 text-center'>Select From Previous Foods</h3>
+
+    <table class="table table-striped table-bordered" id="previous-foods">
       <thead class='thead-dark'>
         <tr>
           <th scope="col">Food Name</th>
           <th scope="col">Brand</th>
-          <th scope="col">UPC Code</th>
-          <th scope="col" class="text-center">Delete</th>
+          <th scope="col" class="text-center">Add</th>
         </tr>
       </thead>
       <tbody>
-        <% @foods.each do |food| %>
-          <tr id= "food-<%= food.id %>">
-            <td><%= food.name %></td>
-            <td><%= food.brand %></td>
-            <td><%= food.upc %></td>
-            <td class="text-center"><%= button_to 'Delete', "/sessions/dishes/#{food.id}", method: :delete, class: 'btn btn-sm btn-danger' %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-center">There are currently no foods in this dish</p>
-  <% end %>
-
-  <br>
-
-  <p class="text-center">
-    <%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info mb-4' %>
-  </p>
-</section>
-
-<section class="text-center m-4 box rounded p-4">
-  <h3 class="mb-3 box-title">Done Adding Foods?</h3>
-  <%= form_for Dish.new do |f| %>
-  <%= f.text_field :name, placeholder: 'Dish Name' %>
-
-  <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
-  <% end %>
-</section>
-
-
-<section class="previous-foods px-5 mt-5">
-  <h3 class='m-4 text-center'>Select From Previous Foods</h3>
-
-  <table class="table table-striped table-bordered" id="previous-foods">
-    <thead class='thead-dark'>
-      <tr>
-        <th scope="col">Food Name</th>
-        <th scope="col">Brand</th>
-        <th scope="col">UPC Code</th>
-        <th scope="col" class="text-center">Add to Dish</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% current_user.foods.uniq.each do |food| %>
+        <% current_user.foods.uniq.each do |food| %>
         <tr id="food-<%= food.id %>">
           <td><%= food.name %></td>
           <td><%= food.brand %></td>
-          <td><%= food.upc %></td>
           <td class="text-center"><%= button_to 'Add', "/sessions/dishes/#{food.id}", method: :patch, class: 'btn btn-sm btn-info' %></td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 </section>
 
 <script>
+  $(document).ready(function () {
+    $('#current-foods').DataTable();
+  });
+
   $(document).ready(function () {
     $('#previous-foods').DataTable();
   });

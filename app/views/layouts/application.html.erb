@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css'%>
+    <%= stylesheet_link_tag 'https://pierresh.github.io/morris.js/css/morris.css'%>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' %>
@@ -17,8 +17,6 @@
     <%= javascript_include_tag 'https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js' %>
     <%= javascript_include_tag 'https://cdn.datatables.net/plug-ins/1.10.20/sorting/datetime-moment.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js' %>
     <%= javascript_include_tag 'https://kit.fontawesome.com/e66f5856fb.js' %>
 
   </head>
@@ -36,7 +34,7 @@
             <a class="nav-link" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/help">Help</a>
+            <a class="nav-link" href="/home#how-it-works">Help</a>
           </li>
           <% if current_user %>
             <li class="nav-item">
@@ -50,7 +48,7 @@
               <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Log a Meal</a>
+              <a class="nav-link" href="/meals/new">Log a Meal</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout" data-method='delete' rel='nofollow'>Logout</a>

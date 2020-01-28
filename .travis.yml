@@ -5,6 +5,7 @@ language: ruby
 rvm:
   - 2.4.1
 install:
+  - bundle install
   - npm install --save morris.js06
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test

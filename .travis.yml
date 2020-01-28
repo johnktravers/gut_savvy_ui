@@ -4,10 +4,6 @@ before_script:
 language: ruby
 rvm:
   - 2.4.1
-install:
-  - bundle install
-  - npm install -g yarn
-  - yarn
 script:
   - bundle exec rails db:reset db:setup db:migrate RAILS_ENV=test
   - bundle exec rspec

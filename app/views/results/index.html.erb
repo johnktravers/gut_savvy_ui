@@ -73,8 +73,14 @@
 <script>
   $(document).ready(function () {
     $('#ingredient-history').DataTable( {
-      "order": [[ 3, "asc" ]]
-    } );
+      "order": [[ 3, "asc" ]],
+           "columns": [
+             null,
+             { "searchable": false },
+             null,
+             null
+           ]
+    });
   });
 </script>
 

@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css' %>
     <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css'%>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'%>
+    <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'%>
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' %>
@@ -20,7 +22,25 @@
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js' %>
     <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js' %>
     <%= javascript_include_tag 'https://kit.fontawesome.com/e66f5856fb.js' %>
+    <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' %>
+    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' %>
 
+    <script>
+      $(document).ready(function(){
+          // Add minus icon for collapse element which is open by default
+          $(".collapse.show").each(function(){
+          	$(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+          });
+
+          // Toggle plus minus icon on show hide of collapse element
+          $(".collapse").on('show.bs.collapse', function(){
+          	$(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+          }).on('hide.bs.collapse', function(){
+          	$(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+          });
+      });
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark">

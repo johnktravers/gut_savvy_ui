@@ -1,0 +1,77 @@
+<div class="creation-current">
+  <!--Accordion wrapper-->
+    <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+      <h3 class="m-4"><u><%= link_to 'Current Meal', new_meal_path %></u></h3>
+      <% if session[:dishes] && !session[:dishes].empty? %>
+        <% session[:dishes].each do |dish_id| %>
+        <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="heading<%= dish_id %>">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse<%= dish_id %>"
+                aria-expanded="false" aria-controls="collapse<%= dish_id %>">
+                <h5 class="mb-0">
+                  <%= Dish.find(dish_id).name %> <i class="fas fa-angle-down rotate-icon"></i>
+                </h5>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapse<%= dish_id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= dish_id %>"
+              data-parent="#accordionEx">
+              <div class="card-body">
+                <% Dish.find(dish_id).foods.each do |food| %>
+                  <li><%= food.name %></li>
+                <% end %>
+              </div>
+            </div>
+
+          </div>
+          <!-- Accordion card -->
+        <% end %>
+        <% end %>
+        <% if session[:foods] && !session[:foods].empty? %>
+        <!-- Accordion card -->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header" role="tab" id="heading-current-dish">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapse-current-dish"
+                aria-expanded="false" aria-controls="collapse-current-dish">
+                <h5 class="mb-0 text-danger">
+                  Dish In Progress <i class="fas fa-angle-down rotate-icon"></i>
+                </h5>
+              </a>
+            </div>
+
+            <!-- Card body -->
+            <div id="collapse-current-dish" class="collapse" role="tabpanel" aria-labelledby="heading-current-dish"
+              data-parent="#accordionEx">
+              <div class="card-body">
+                <% session[:foods].each do |food_id| %>
+                  <li><%= Food.find(food_id).name %></li>
+                <% end %>
+              </div>
+              <%= link_to 'Go to Dish', new_dish_path, class: 'm-4'%>
+            </div>
+          </div>
+          <!-- Accordion card -->
+        <% end %>
+        <% if (!session[:dishes] || session[:dishes].empty?) && (!session[:foods] || session[:foods].empty?) %>
+          <p>Currently no dishes in your meal.</p>
+        <% end %>
+      </div>
+      <!-- Accordion wrapper -->
+      <section class='text-center mt-4 box rounded p-4'>
+        <h4 class='mb-3 box-title'>Done Adding Dishes?</h4>
+        <br>
+        <%= form_for Meal.new do |f| %>
+          <%= f.text_field :title, placeholder: 'Meal Title' %>
+
+          <%= f.submit "Create Meal", class:"btn btn-sm btn-success" %>
+        <% end %>
+        <br>
+        <p> *Unsaved dishes in progress will not be included</p>
+      </section>
+  </div>

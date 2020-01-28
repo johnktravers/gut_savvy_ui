@@ -136,3 +136,15 @@ h1 {
   width: 191px;
   height: 46px;
 }
+
+.creation-main {
+  width: 75%;
+  float: left;
+  border-right: 3px solid black;
+}
+
+.creation-current {
+  width: 25%;
+  float: right;
+  padding: 5px;
+}

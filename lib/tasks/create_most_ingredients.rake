@@ -8,6 +8,7 @@ task :create_most_ingredients => [:environment] do
   )
   meal = user.meals.create!(title: "Everything You Have", gut_feeling: 0)
   dish = meal.dishes.create!(name: "All the bacon and eggs you have")
+
   def create_foods_and_ingredients(foods, meal, dish)
     foods.each do |food_data|
       if food = Food.find_by(upc: food_data["gtinUpc"])
@@ -77,6 +78,7 @@ task :create_most_ingredients => [:environment] do
   def validate_ingredients(ingredients)
       ingredients.delete_if { |ingredient| ingredient.include?("WATER") }
       ingredients.delete_if { |ingredient| ingredient.include?("NATURAL FLAVOR") }
+      ingredients.delete_if { |ingredient| ingredient.include?("ARTIFICIAL FLAVOR") }
   end
 
   def format_ingredients(ingredient_list)

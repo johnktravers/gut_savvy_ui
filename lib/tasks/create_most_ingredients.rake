@@ -85,6 +85,7 @@ task :create_most_ingredients => [:environment] do
     ingredient_list
       .gsub(/ \[.*?\]/, '')
       .gsub(/ \(.*?\)/, '')
+      .gsub(/\(\)\*/, '')
       .gsub('ORGANIC ', '')
       .split('.').first
       .split(', 2%').first

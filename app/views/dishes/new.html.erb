@@ -1,8 +1,7 @@
-<h1 class='m-4 text-center'>Create a Dish</h1>
-
-<section class="row">
+<div class="creation-main">
+  <h1 class='m-4 text-center'>Create a Dish</h1>
   <section class="current-foods px-5">
-    <h3 class='mx-4 mb-4 text-center'>Foods in this Dish</h3>
+    <h3 class='m-4 text-center'>Foods in this Dish</h3>
     <% if @foods.any? %>
       <table class="table table-striped table-bordered" id="current-foods">
         <thead class='thead-dark'>
@@ -26,23 +25,26 @@
       <p class="text-center">There are currently no foods in this dish</p>
     <% end %>
 
+    <br>
+
     <p class="text-center">
-      <%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info mt-4 mb-4' %>
+      <%= link_to 'Add a New Food', new_food_path, class: 'btn btn-info mb-4' %>
     </p>
-
-    <section class="text-center m-4 box rounded p-4">
-      <h3 class="mb-3 box-title">Done Adding Foods?</h3>
-      <%= form_for Dish.new do |f| %>
-      <%= f.text_field :name, placeholder: 'Dish Name' %>
-
-      <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
-      <% end %>
-    </section>
   </section>
 
-  <section class="previous-foods px-5 mb-4">
-    <h3 class='mx-4 mb-4 text-center'>Select From Previous Foods</h3>
+  <section class="text-center my-4 mx-auto box food-box rounded p-4">
+    <h3 class="mb-3 box-title">Done Adding Foods?</h3>
+    <%= form_for Dish.new do |f| %>
+    <%= f.text_field :name, placeholder: 'Dish Name' %>
 
+    <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
+    <% end %>
+  </section>
+
+  <hr>
+
+  <section class="previous-foods px-5 m-4">
+    <h3 class='m-4 text-center'>Select From Previous Foods</h3>
     <table class="table table-striped table-bordered" id="previous-foods">
       <thead class='thead-dark'>
         <tr>
@@ -62,8 +64,9 @@
       </tbody>
     </table>
   </section>
-</section>
+</div>
 
+<%= render partial: './partials/meal_cart' %>
 <script>
   $(document).ready(function () {
     $('#current-foods').DataTable();

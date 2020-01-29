@@ -1,18 +1,22 @@
-<h1 class='m-4 text-center'>Add a New Food</h1>
+<div class="creation-main">
+  <h1 class='m-4 text-center'>Add a New Food</h1>
 
-<section class='text-center barcode-scan'>
-  <h3>Scan the Product's Barcode</h3>
-  <p>Align the product's barcode in the center of the box below</p>
-  <div id='barcode-scanner'></div>
-</section>
+  <section class='text-center barcode-scan'>
+    <h3>Scan the Product's Barcode</h3>
+    <p>Align the product's barcode in the center of the box below</p>
+    <div id='barcode-scanner'></div>
+  </section>
 
-<section class='text-center enter-upc mt-5'>
-  <h3>Not Scanning? Enter the 12-digit UPC Manually</h3>
-  <p>Enter the numbers underneath the product barcode into the field below</p>
-  <%= form_for @food do |f| %>
-    <%= f.text_field :upc, placeholder: 'UPC Code' %>
+  <section class='text-center enter-upc mt-5'>
+    <h3>Not Scanning? Enter the 12-digit UPC Manually</h3>
+    <p>Enter the numbers underneath the product barcode into the field below</p>
+    <%= form_for @food do |f| %>
+      <%= f.text_field :upc, placeholder: 'UPC Code' %>
 
-    <%= f.submit 'Add Food', class: 'btn btn-info btn-sm' %>
-  <% end %>
-  <div id='barcode-scanner'></div>
-</section>
+      <%= f.submit 'Add Food', class: 'btn btn-info btn-sm' %>
+    <% end %>
+    <div id='barcode-scanner'></div>
+  </section>
+</div>
+
+<%= render partial: './partials/meal_cart' %>

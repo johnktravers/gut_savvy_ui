@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 User.destroy_all
 Meal.destroy_all
 MealIngredient.destroy_all
@@ -897,13 +896,7 @@ def create_food_and_ingredients(upc, meal)
       upc: food_info['gtinUpc']
     )
 
-    ingredient_list = food_info['ingredients']
-      .gsub(/ \[.*?\]/, '')
-      .gsub(/ \(.*?\)/, '')
-      .split('.').first
-      .split(', 2%').first
-      .split(', CONTAINS').first
-      .split(', ')
+    ingredient_list = process_ingredients(food_info['ingredients'])
 
     ingredient_list.each do |name|
       unless ingredient = Ingredient.find_by(name: name)
@@ -914,6 +907,55 @@ def create_food_and_ingredients(upc, meal)
     end
   end
   food
+end
+
+def process_ingredients(ingredient_list)
+  formatted_ingredients    = format_ingredients(ingredient_list)
+  consolidated_ingredients = consolidate_ingredients(formatted_ingredients).uniq.compact
+  validate_ingredients(consolidated_ingredients)
+end
+
+def format_ingredients(ingredient_list)
+  ingredient_list
+    .gsub(/ \[.*?\]/, '')
+    .gsub(/ \(.*?\)/, '')
+    .gsub(/\(\)\*/, '')
+    .gsub('ORGANIC ', '')
+    .gsub('100%', '')
+    .gsub('REAL', '')
+    .split('.').first
+    .split(', 2%').first
+    .split(', CONTAINS').first
+    .split(', ')
+end
+
+def consolidate_ingredients(ingredients)
+  ingredients.map! do |ingredient|
+    if ingredient.include?("MILK")
+      ingredient.replace "MILK" unless not_dairy_milk?(ingredient)
+    elsif ingredient.include?("SALT")
+      ingredient.replace "SALT"
+    else
+      ingredient
+    end
+  end
+end
+
+def not_dairy_milk?(ingredient)
+  ingredient.include?("ALMOND")  ||
+  ingredient.include?("SOY")     ||
+  ingredient.include?("CASHEW")  ||
+  ingredient.include?("COCONUT") ||
+  ingredient.include?("FLAX")    ||
+  ingredient.include?("HEMP")    ||
+  ingredient.include?("RICE")    ||
+  ingredient.include?("OAT")
+end
+
+def validate_ingredients(ingredients)
+    ingredients.delete_if { |ingredient| ingredient.include?("WATER") }
+    ingredients.delete_if { |ingredient| ingredient.include?("NATURAL FLAVOR") }
+    ingredients.delete_if { |ingredient| ingredient.include?("ARTIFICIAL FLAVOR") }
 end
 
 def get_food_info(upc)

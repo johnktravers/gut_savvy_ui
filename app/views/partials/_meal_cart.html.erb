@@ -1,7 +1,7 @@
 <div class="creation-current">
   <!--Accordion wrapper-->
     <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-      <h3 class="m-4 current-meal text-center"><u><%= link_to 'Current Meal', new_meal_path %></u></h3>
+      <h3 class="m-4 text-center"><%= link_to 'Current Meal', new_meal_path %></h3>
       <% if session[:dishes] && !session[:dishes].empty? %>
         <% session[:dishes].each do |dish_id| %>
         <!-- Accordion card -->

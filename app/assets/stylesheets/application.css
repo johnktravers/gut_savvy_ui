@@ -29,7 +29,7 @@ svg {
   height:500px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-family: 'Roboto', sans-serif;
 }
 
@@ -101,11 +101,6 @@ h1, h2, h3 {
   padding-bottom: 1rem;
 }
 
-.btn-info {
-  background-color: #3C8059;
-  border: 1px solid #003414;
-}
-
 .lobster {
   font-family: 'Lobster Two', cursive;
 }
@@ -143,13 +138,21 @@ h1, h2, h3 {
 }
 
 .creation-main {
-  width: 75%;
+  width: 73%;
+  height: 100%;
   float: left;
-  border-right: 3px solid black;
+  border-right: 3px solid #777;
+  border-top: 3px solid #777;
 }
 
 .creation-current {
-  width: 25%;
+  width: 27%;
+  height: 100%;
   float: right;
   padding: 5px;
+  border-top: 3px solid #777;
+}
+
+.card, .meal-box {
+  width: 90%;
 }

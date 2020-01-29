@@ -14,6 +14,8 @@
 //= require activestorage
 //= require jquery
 //= require jquery_ujs
+//= require morris.js06
+//= require raphael
 //= require turbolinks
 //= require quagga
 //= require_tree .

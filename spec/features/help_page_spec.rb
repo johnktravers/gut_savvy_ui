@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'As a vistor' do
-  describe 'When I visit /help' do
+  describe 'When I visit the home page' do
     it 'I see a description of how to use the application' do
-      visit '/help'
+      visit '/home#how-it-works'
 
-      expect(current_path).to eq(help_path)
+      expect(current_path).to eq(home_path)
 
-      expect(page).to have_css('#what-is-gs')
-      within('#what-is-gs') do
+      expect(page).to have_css('#help-section')
+      within('#help-section') do
         expect(page).to have_content("What is Gut Savvy?")
       end
 

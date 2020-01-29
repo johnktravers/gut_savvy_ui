@@ -10,7 +10,7 @@ RSpec.describe 'As a visitor' do
   end
 
   it 'can authenticate my account with Google OAuth' do
-    expect(current_path).to eq(help_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome, #{@user.name}! Your account has been created using Google.")
   end
 

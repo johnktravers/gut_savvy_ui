@@ -18,7 +18,7 @@ RSpec.describe 'As a user' do
       expect(current_path).to eq(results_path)
 
       visit dashboard_path
-      click_link 'See My Results'
+      click_link 'See Your Results'
       expect(current_path).to eq(results_path)
     end
 

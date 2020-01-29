@@ -1,5 +1,27 @@
 {
   "name": "gut_savvy_ui",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "morris.js06": "^0.6.4"
+  },
+  "description": "# Description",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "N/A"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnktravers/gut_savvy_ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnktravers/gut_savvy_ui/issues"
+  },
+  "homepage": "https://github.com/johnktravers/gut_savvy_ui#readme"
 }

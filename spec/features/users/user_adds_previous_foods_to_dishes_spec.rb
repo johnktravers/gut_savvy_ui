@@ -21,17 +21,14 @@ RSpec.describe 'As a logged in user' do
       within "#food-#{@foods[0].id}" do
         expect(page).to have_content(@foods[0].name)
         expect(page).to have_content(@foods[0].brand)
-        expect(page).to have_content(@foods[0].upc)
       end
       within "#food-#{@foods[1].id}" do
         expect(page).to have_content(@foods[1].name)
         expect(page).to have_content(@foods[1].brand)
-        expect(page).to have_content(@foods[1].upc)
       end
       within "#food-#{@foods[2].id}" do
         expect(page).to have_content(@foods[2].name)
         expect(page).to have_content(@foods[2].brand)
-        expect(page).to have_content(@foods[2].upc)
       end
     end
 
@@ -45,7 +42,6 @@ RSpec.describe 'As a logged in user' do
       within "#food-#{@foods[1].id}" do
         expect(page).to have_content(@foods[1].name)
         expect(page).to have_content(@foods[1].brand)
-        expect(page).to have_content(@foods[1].upc)
       end
     end
   end

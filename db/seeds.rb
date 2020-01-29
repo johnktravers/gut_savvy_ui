@@ -910,7 +910,7 @@ def create_food_and_ingredients(upc, meal)
 end
 
 def process_ingredients(ingredient_list)
-  formatted_ingredients    = format_ingredients(ingredient_list)[0]
+  formatted_ingredients    = format_ingredients(ingredient_list)
   consolidated_ingredients = consolidate_ingredients(formatted_ingredients).uniq.compact
   validate_ingredients(consolidated_ingredients)
 end
@@ -927,6 +927,7 @@ def format_ingredients(ingredient_list)
     .split(', CONTAINS').first
     .split(', ')
     .split('AND')
+    .flatten
 end
 
 def consolidate_ingredients(ingredients)

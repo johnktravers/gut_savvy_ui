@@ -91,6 +91,7 @@ task :create_most_ingredients => [:environment] do
       .split(', 2%').first
       .split(', CONTAINS').first
       .split(', ')
+      .flatten
   end
 
   def compile_food_data(pages)

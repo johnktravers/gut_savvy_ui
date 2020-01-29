@@ -32,6 +32,15 @@
     </p>
   </section>
 
+  <section class="text-center my-4 mx-auto box food-box rounded p-4">
+    <h3 class="mb-3 box-title">Done Adding Foods?</h3>
+    <%= form_for Dish.new do |f| %>
+    <%= f.text_field :name, placeholder: 'Dish Name' %>
+
+    <%= f.submit "Create Dish", class: 'btn btn-sm btn-success' %>
+    <% end %>
+  </section>
+
   <hr>
 
   <section class="previous-foods px-5 m-4">

@@ -58,6 +58,10 @@ h1, h2, h3 {
   background-color: lightblue;
 }
 
+.food-box {
+  width: 75%;
+}
+
 .box-title {
   text-decoration: underline;
 }

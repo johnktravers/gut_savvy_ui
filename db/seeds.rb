@@ -926,7 +926,6 @@ def format_ingredients(ingredient_list)
     .split('.').first
     .split(', 2%').first
     .split(', CONTAINS').first
-    .split('AND').first
     .split(', ')
 end
 

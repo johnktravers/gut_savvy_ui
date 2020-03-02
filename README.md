@@ -1,59 +1,79 @@
-# README
+# Gut Savvy
 
-# Description
+## Introduction
 
-
-Gut Savvy is an application for tracking the foods that you eat, giving your meals a rating based on how you feel, and receiving results that will help you determine which foods are good and which foods are bad for your gut health.
-
-Gut Savvy was built using: Ruby version 2.4.1, Rails version 5.2.4, Sinatra, and JavaScript.
+Have you ever had an upset stomach from something that you ate, but not known exactly what that was? Gut Savvy is an application that helps users track what they eat and how they feel after eating to learn which ingredients in the foods they eat are good for their digestive system, and which are harmful.
 
 
-# Local Setup
+## Initial Setup
+
+Navigate into your desired directory and execute the following commands to set up the repository locally:
+
+```
+git clone git@github.com:johnktravers/gut_savvy_ui.git gut_savvy
+cd gut_savvy
+bundle install
+rake db:{create,migrate,seed}
+rails server
+```
+
+Once the commands have finished executing, open a web browser and navigate to http://localhost:3000. You can now access the application locally.
 
 
-Visit https://github.com/johnktravers/gut_savvy_ui and clone down the repo. Once you have cloned Gut Savvy onto your local computer, open a text editor like Atom, and bundle to add the gemfile to your system. This will enable you to work on the user interface side of the application. 
+## Running Tests
+
+To make sure the repository is set up correctly, run the test suite with the following command:
+
+```
+bundle exec rspec
+```
 
 
-Gut Savvy also utilized a microservice setup using Sinatra. Visit https://github.com/Jonpatt92/gut_savvy_service to clone down and install the service. This microservice hits the FDC API. This service accepts a 12-digit UPC code and returns information of the related food product. 
+## How to Use
+
+The user is first greeted by the splash page, where they can find a section on how to use the app and click the sign in button to sign in using Google OAuth2.
+
+<img width="1440" alt="gut_savvy_splash_page" src="https://user-images.githubusercontent.com/46035439/75641991-386def80-5bf7-11ea-91b3-2e12ee094b0f.png">
+
+Upon signing in, the user is directed to their dashboard, where they can log a new meal. Meals are composed of multiple dishes (groups of foods that are commonly eaten together), and dishes are made of multiple foods.
+
+The user can scan product barcodes or manually enter 12-digit UPC codes to add foods to a dish, or select from previously eaten dishes. The user can then add multiple dishes to the new meal.
+
+<img width="1439" alt="gut_savvy_barcode_scanning" src="https://user-images.githubusercontent.com/46035439/75642001-428fee00-5bf7-11ea-8f68-1db882943c16.png">
+
+After logging the new meal, the user is prompted to enter a "Gut Feeling", or digestive rating, for that meal. The scale ranges from -5 to 5, with -5 being the worst digestive experience ever and 5 being the best. After 12 meals are logged in the system and rated, the user can see their results.
+
+The results page consists of graphs of the best and worst ingredients found in the foods that the user has eaten based on their rating across every meal logged.  It also has a Gut Feeling Timeline, so the user can track their progress to improving digestion, and a table of every ingredient eaten along with the foods it is contained in.
+
+<img width="1440" alt="gut_savvy_results" src="https://user-images.githubusercontent.com/46035439/75641999-40c62a80-5bf7-11ea-82ec-37113a025f10.png">
 
 
-# How to Use
+## Database Schema
 
-[First go to the Gut Savvy homepage and register with a google account](http://gut-savvy-ui.herokuapp.com/)
-
-To use this application you must log a meal. In our system a meal can consist of many dishes and a dish can be made up of many foods. To add a meal you must visit your profile dashboard. From this page you should click the 'Log A Meal' button and then you will be taken to the Log a Meal page. From this page, click 'Add a New Dish' and then from the dish page you can add the specific foods you ate in that dish.
+<img width="1111" alt="gut_savvy_schema" src="https://user-images.githubusercontent.com/46035439/75641340-2ee38800-5bf5-11ea-9e26-6fa6993364f0.png">
 
 
-After you have created a meal you will need to add your Gut Feeling in order to have results. A Gut Feeling is our numeric rating system for how you feel after eating a meal. This system goes from 5 to -5. A rating of 5 means you are feeling the best, a rating of 0 means you are feeling neutral, and a rating of -5 means you are feeling the worst. Your initial Gut Feeling must be applied to a meal within 72 hours of adding the meal to our application. This rating is able to be edited for 24 hours, at which point the Gut Feeling will be permanently saved in the system.
+## Tech Stack
+
+- Ruby on Rails
+- JavaScript
+  - Quagga.js -> barcode scanning
+  - Morris.js -> results page graphs
+- JQuery
+- Sinatra -> [microservice](https://github.com/Jonpatt92/gut_savvy_service)
+- PostgreSQL
+- RSpec
+- Travis CI
 
 
-The purpose of your results page is to help you keep track of what foods and ingredients are making you feel good and also which are making you feel bad. The results page will have several graphs and charts with information based on your Gut Feelings. You will need to add a Gut Feeling to 12 meals before your results page is populated with information.
+## How to Contribute
+
+If you would like to make a contribution, please fork the repo and set it up locally using the instructions above. Commit your changes, make a PR to this repo, and we'll get to it shortly. If you have any questions or advice for new features, feel free to reach out to any of the core contributors below.
 
 
-# Roadmap
+## Core Contributors
 
-
-Our goal is to add an advanced analysis feature for food ingredients that will help better define what foods we recommend the user eat and which we recommend they avoid. Our goal is to be very precise in our food results and recommendations. 
-
-
-# Project Status
-
-
-This project was created as a two week school project, but continued support and functionality is planned. Currently, the program status is functional. Gut Savvy is still in the early stages of the overall plan for this application. 
-
-
-**Authors:**
-
-
-* [Christopher Kelling](https://github.com/cjkelling)
-* [John Travers](https://github.com/johnktravers)
-* [Jonathan Patterson](https://github.com/jonpatt92)
-* [Ryan Hantak](https://github.com/rhantak)
-
-
-**Support:**
-
-
-Reach out to us on Github for help or support for this program.
-
-
+- [Christopher Kelling](https://github.com/cjkelling)
+- [John Travers](https://github.com/johnktravers)
+- [Jonathan Patterson](https://github.com/jonpatt92)
+- [Ryan Hantak](https://github.com/rhantak)

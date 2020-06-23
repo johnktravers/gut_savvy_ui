@@ -156,3 +156,8 @@ h1, h2, h3, h4 {
 .card, .meal-box {
   width: 90%;
 }
+
+.gutfeeling_graphic {
+  width: 50%;
+  padding: 20px;
+}

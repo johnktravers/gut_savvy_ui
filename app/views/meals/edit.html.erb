@@ -1,9 +1,10 @@
 <h1 class='m-4 text-center'>Update your Gut Feeling for <%= @meal.title %></h1>
-<section class='m-4 text-center'>
+<section class='m-4 p-5 text-center'>
   <%= form_for @meal do |f| %>
     <%= f.label :gut_feeling %>
     <%= f.select :gut_feeling, options_for_select((-5..5).to_a.reverse!, @meal.gut_feeling) %>
 
     <%= f.submit "Update", class:'btn btn-success btn-sm' %>
   <% end %>
+  <%= image_tag "gutfeeling_graphic.png", class: "gutfeeling_graphic mt-5" %>
 </section>

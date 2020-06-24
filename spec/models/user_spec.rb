@@ -88,20 +88,6 @@ RSpec.describe User, type: :model do
         @meal_12.ingredients.push(@ingredient_10, @ingredient_12, @ingredient_7)
       end
 
-
-      it 'best_ingredients_data' do
-        result = @user.best_ingredients_data
-
-        expect(result.count).to eq(5)
-        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
-      end
-
-
-      it 'worst_ingredients_data' do
-        result = @user.worst_ingredients_data
-
-        expect(result.count).to eq(5)
-        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
       it 'sorted_ingredients' do
         worst_result = @user.sorted_ingredients('worst', 6)
 

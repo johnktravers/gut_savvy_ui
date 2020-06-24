@@ -8,4 +8,13 @@ class Ingredient < ApplicationRecord
 
   has_many :meal_ingredients, dependent: :destroy
   has_many :meals, through: :meal_ingredients
+
+  def self.to_data
+    all.map do |ingredient|
+      {
+        name: ingredient.name,
+        avg_gut_feeling: ingredient.avg_gut_feeling.abs.round(2)
+      }
+    end
+  end
 end

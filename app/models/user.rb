@@ -20,15 +20,6 @@ class User < ApplicationRecord
     12 - meals.where.not(gut_feeling: nil).count
   end
 
-  def worst_ingredients_data
-    worst_ingredients.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling.abs.round(2)
-      }
-    end[0..24]
-  end
-
   def ingredient_table_data
     ingredients
       .joins(:meals)
@@ -38,14 +29,6 @@ class User < ApplicationRecord
       .order('avg_gut_feeling')
   end
 
-  def best_ingredients_data
-    best_ingredients.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling.round(2)
-      }
-    end[0..24]
-  end
   def sorted_ingredients(flag, count)
     if flag == 'best'
       order = 'DESC'

@@ -11,7 +11,7 @@
         <%= content_tag :div, '',
         id: 'worst-ingredients-graph',
         class: 'm-auto',
-        data: {ingredients: current_user.worst_ingredients_data} %>
+        data: {ingredients: current_user.sorted_ingredients('worst', 25).to_data} %>
       </article>
 
       <article class="best-graph">
@@ -19,7 +19,7 @@
         <%= content_tag :div, '',
         id: 'best-ingredients-graph',
         class: 'm-auto',
-        data: {ingredients: current_user.best_ingredients_data} %>
+        data: {ingredients: current_user.sorted_ingredients('best', 25).to_data} %>
       </article>
     </section>
 

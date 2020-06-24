@@ -20,48 +20,32 @@ class User < ApplicationRecord
     12 - meals.where.not(gut_feeling: nil).count
   end
 
-  def worst_ingredients_data
-    worst_ingredients.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling.abs.round(2)
-      }
-    end[0..24]
-  end
-
   def ingredient_table_data
-    ingredients.joins(:meals).
-    includes(:foods).
-    select('ingredients.*, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
-    group('ingredients.id').
-    order('avg_gut_feeling')
+    ingredients
+      .joins(:meals)
+      .includes(:foods)
+      .select('ingredients.*, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency')
+      .group('ingredients.id')
+      .order('avg_gut_feeling')
   end
 
-  def worst_ingredients
-    ingredients.joins(:meals).
-    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
-    group('ingredients.id').
-    having('avg(meals.gut_feeling) < 0').
-    having('count(ingredients.id) > 2').
-    order('avg_gut_feeling')
-  end
+  def sorted_ingredients(flag, count)
+    if flag == 'best'
+      order = 'DESC'
+      range = [0, 6]
+    else
+      order = 'ASC'
+      range = [-6, 0]
+    end
 
-  def best_ingredients_data
-    best_ingredients.map do |ingredient|
-      {
-        name: ingredient.name,
-        avg_gut_feeling: ingredient.avg_gut_feeling.round(2)
-      }
-    end[0..24]
-  end
-
-  def best_ingredients
-    ingredients.joins(:meals).
-    select('ingredients.name, avg(meals.gut_feeling) as avg_gut_feeling, sqrt(count(ingredients.id)) as frequency').
-    group('ingredients.id').
-    having('avg(meals.gut_feeling) > 0').
-    having('count(ingredients.id) > 2').
-    order('avg_gut_feeling DESC')
+    ingredients
+      .joins(:meals)
+      .select('ingredients.*, avg(meals.gut_feeling) as avg_gut_feeling')
+      .group('ingredients.id')
+      .having('avg(meals.gut_feeling) > ? AND avg(meals.gut_feeling) < ?', range[0], range[1])
+      .having('count(ingredients.id) > 2')
+      .order("avg_gut_feeling #{order}, ingredients.name")
+      .limit(count)
   end
 
   def gut_feelings_over_time

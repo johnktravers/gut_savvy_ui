@@ -61,61 +61,49 @@ RSpec.describe User, type: :model do
         @meal_11 = create(:meal, user: @user, gut_feeling: 5, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
         @meal_12 = create(:meal, user: @user, gut_feeling: 2, created_at: 'Tue, 24 Dec 2019 14:54:09 UTC +00:00')
 
-        ingredient_1 = create(:ingredient)
-        ingredient_2 = create(:ingredient)
-        ingredient_3 = create(:ingredient)
-        ingredient_4 = create(:ingredient)
-        ingredient_5 = create(:ingredient)
-        ingredient_6 = create(:ingredient)
-        ingredient_7 = create(:ingredient)
-        ingredient_8 = create(:ingredient)
-        ingredient_9 = create(:ingredient)
-        ingredient_10 = create(:ingredient)
-        ingredient_11 = create(:ingredient)
-        ingredient_12 = create(:ingredient)
+        @ingredient_1 = create(:ingredient)  # avg: -4.0
+        @ingredient_2 = create(:ingredient)  # avg: -1.0
+        @ingredient_3 = create(:ingredient)  # avg: -3.67
+        @ingredient_4 = create(:ingredient)  # avg: -0.67
+        @ingredient_5 = create(:ingredient)  # avg: -0.25
+        @ingredient_6 = create(:ingredient)  # avg: -1.33
+        @ingredient_7 = create(:ingredient)  # avg: +2.5
+        @ingredient_8 = create(:ingredient)  # avg: +0.25
+        @ingredient_9 = create(:ingredient)  # avg: +2.0
+        @ingredient_10 = create(:ingredient) # avg: +3.67
+        @ingredient_11 = create(:ingredient) # avg: +1.33
+        @ingredient_12 = create(:ingredient) # avg: +3.5
 
-        @meal_1.ingredients.push(ingredient_1, ingredient_3)
-        @meal_2.ingredients.push(ingredient_1, ingredient_3)
-        @meal_3.ingredients.push(ingredient_1, ingredient_2, ingredient_3)
-        @meal_4.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
-        @meal_5.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
-        @meal_6.ingredients.push(ingredient_4, ingredient_5, ingredient_6)
-        @meal_7.ingredients.push(ingredient_8, ingredient_9)
-        @meal_8.ingredients.push(ingredient_8, ingredient_9)
-        @meal_9.ingredients.push(ingredient_7, ingredient_8, ingredient_9)
-        @meal_10.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
-        @meal_11.ingredients.push(ingredient_10, ingredient_11, ingredient_12)
-        @meal_12.ingredients.push(ingredient_10, ingredient_12)
+        @meal_1.ingredients.push(@ingredient_1, @ingredient_3, @ingredient_11)
+        @meal_2.ingredients.push(@ingredient_1, @ingredient_3, @ingredient_8)
+        @meal_3.ingredients.push(@ingredient_1, @ingredient_2, @ingredient_6)
+        @meal_4.ingredients.push(@ingredient_4, @ingredient_5, @ingredient_3)
+        @meal_5.ingredients.push(@ingredient_4, @ingredient_5, @ingredient_6)
+        @meal_6.ingredients.push(@ingredient_8, @ingredient_5, @ingredient_6)
+        @meal_7.ingredients.push(@ingredient_4, @ingredient_9, @ingredient_2)
+        @meal_8.ingredients.push(@ingredient_8, @ingredient_9, @ingredient_5)
+        @meal_9.ingredients.push(@ingredient_7, @ingredient_8, @ingredient_9)
+        @meal_10.ingredients.push(@ingredient_10, @ingredient_11)
+        @meal_11.ingredients.push(@ingredient_10, @ingredient_11, @ingredient_12)
+        @meal_12.ingredients.push(@ingredient_10, @ingredient_12, @ingredient_7)
       end
 
-      it 'best_ingredients' do
-        result = @user.best_ingredients
+      it 'sorted_ingredients' do
+        worst_result = @user.sorted_ingredients('worst', 6)
 
-        expect(result.length).to eq(5)
-        expect(result.first.avg_gut_feeling).to eq(4.5)
-        expect(result.last.avg_gut_feeling).to eq(2)
-      end
+        expect(worst_result.length).to eq(6)
+        expect(worst_result.first.avg_gut_feeling).to eq(-4)
+        expect(worst_result.last.avg_gut_feeling).to eq(-0.25)
+        expect(worst_result.first.name).to eq(@ingredient_1.name)
+        expect(worst_result.last.name).to eq(@ingredient_5.name)
 
-      it 'best_ingredients_data' do
-        result = @user.best_ingredients_data
+        best_result = @user.sorted_ingredients('best', 5)
 
-        expect(result.count).to eq(5)
-        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
-      end
-
-      it 'worst_ingredients' do
-        result = @user.worst_ingredients
-
-        expect(result.length).to eq(5)
-        expect(result.first.avg_gut_feeling).to eq(-4)
-        expect(result.last.avg_gut_feeling).to eq(-1)
-      end
-
-      it 'worst_ingredients_data' do
-        result = @user.worst_ingredients_data
-
-        expect(result.count).to eq(5)
-        expect(result.first.keys).to eq(%i[name avg_gut_feeling])
+        expect(best_result.length).to eq(5)
+        expect(best_result.first.avg_gut_feeling.round(2)).to eq(3.67)
+        expect(best_result.last.avg_gut_feeling.round(2)).to eq(1.33)
+        expect(best_result.first.name).to eq(@ingredient_10.name)
+        expect(best_result.last.name).to eq(@ingredient_11.name)
       end
 
       it 'gut_feelings_over_time' do
